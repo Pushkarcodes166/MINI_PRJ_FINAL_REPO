@@ -1,0 +1,51 @@
+[
+  {
+    "stream": "Science",
+    "degree": "B.Tech",
+    "career": "Software Engineer",
+    "skills": ["Programming", "Problem Solving"],
+    "interest": "Technology"
+  },
+  {
+    "stream": "Science",
+    "degree": "MBBS",
+    "career": "Doctor",
+    "skills": ["Biology", "Empathy"],
+    "interest": "Healthcare"
+  },
+  {
+    "stream": "Commerce",
+    "degree": "B.Com",
+    "career": "Accountant",
+    "skills": ["Maths", "Attention to Detail"],
+    "interest": "Finance"
+  },
+  {
+    "stream": "Arts",
+    "degree": "BA",
+    "career": "Civil Services",
+    "skills": ["General Knowledge", "Leadership"],
+    "interest": "Administration"
+  },
+  {
+    "stream": "Science",
+    "degree": "B.Sc",
+    "career": "Research Scientist",
+    "skills": ["Research", "Critical Thinking"],
+    "interest": "Science"
+  },
+  {
+    "stream": "Commerce",
+    "degree": "BBA",
+    "career": "Business Analyst",
+    "skills": ["Analysis", "Communication"],
+    "interest": "Business"
+  },
+  {
+    "stream": "Arts",
+    "degree": "BFA",
+    "career": "Graphic Designer",
+    "skills": ["Creativity", "Design"],
+    "interest": "Art"
+  }
+]
