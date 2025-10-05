@@ -18,31 +18,47 @@ const LoginPage = () => {
     userType: 'student'
   });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      if (!userCredential.user.emailVerified) {
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+        await userCredential.user.reload(); // Ensure latest emailVerified status
+        if (!userCredential.user.emailVerified) {
+          toast({
+            title: "Email Not Verified",
+            description: "Please verify your email before logging in.",
+            variant: "destructive"
+          });
+          return;
+        }
+        // Save user info to localStorage for dashboard
+        const userInfo = {
+          id: userCredential.user.uid,
+          email: userCredential.user.email,
+          name: userCredential.user.displayName || userCredential.user.email,
+          role: formData.userType,
+          class: '', // Add if available
+          interests: '' // Add if available
+        };
+        localStorage.setItem('currentUser', JSON.stringify(userInfo));
         toast({
-          title: "Email Not Verified",
-          description: "Please verify your email before logging in.",
+          title: "Login Successful! 🎉",
+          description: `Welcome back!`,
+        });
+        // Navigate based on userType
+        if (formData.userType === 'admin') {
+          navigate('/admin-dashboard');
+        } else {
+          navigate('/student-dashboard');
+        }
+      } catch (error) {
+        toast({
+          title: "Login Failed",
+          description: error.message,
           variant: "destructive"
         });
-        return;
       }
-      toast({
-        title: "Login Successful! 🎉",
-        description: `Welcome back!`,
-      });
-      navigate('/student-dashboard');
-    } catch (error) {
-      toast({
-        title: "Login Failed",
-        description: error.message,
-        variant: "destructive"
-      });
-    }
-  };
+    };
 
   return (
     <>
