@@ -12,6 +12,7 @@ import CareerRoadmap from '@/pages/CareerRoadmap';
 import RoadmapDetails from '@/pages/RoadmapDetails';
 import ProjectDocumentation from '@/pages/ProjectDocumentation';
 import CareerFieldsPage from '@/pages/CareerFieldsPage';
+import EngineeringPage from '@/pages/EngineeringPage';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/roadmap-details" element={<RoadmapDetails />} />
           <Route path="/documentation" element={<ProjectDocumentation />} />
           <Route path="/career-fields" element={<CareerFieldsPage />} />
+          <Route path="/careers/engineering" element={<EngineeringPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster />

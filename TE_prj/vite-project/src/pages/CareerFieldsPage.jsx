@@ -3,6 +3,28 @@ import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
 import scienceCareers from '../data/science_careers.js';
+// Main headings for clubbing
+const mainFields = [
+  {
+    id: 'engineering',
+    title: 'Engineering',
+    description: 'Professional engineering across multiple disciplines including Computer Science & IT, Mechanical, Chemical, Electrical, Electronic, Aerospace, Aeronautical, Biomedical.',
+    route: '/careers/engineering'
+  }
+];
+
+// All careers except those clubbed under Engineering
+const engineeringIds = [
+  'engineering_general',
+  'computer_science_it',
+  'mechanical_engineering',
+  'chemical_engineering',
+  'civil_engineering',
+  'electrical_electronics',
+  'aerospace_engineering',
+  'biomedical_engineering'
+];
+const remainingCareers = scienceCareers.filter(c => !engineeringIds.includes(c.id));
 
 
 const CareerFieldsPage = () => {
@@ -19,7 +41,38 @@ const CareerFieldsPage = () => {
         <div className="relative z-10 container mx-auto px-6 py-12">
           <h1 className="text-4xl md:text-5xl font-bold mb-8 gradient-text text-center">Explore Career Fields</h1>
           <div className="flex flex-col gap-8 w-full max-w-4xl mx-auto">
-            {scienceCareers.map(field => (
+            {/* Engineering main heading */}
+            {mainFields.map(field => (
+              <motion.div
+                key={field.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="glass-effect p-8 rounded-3xl card-hover shadow-lg border border-purple-700/30 w-full flex flex-col min-w-0"
+                style={{ wordBreak: 'break-word', overflowWrap: 'break-word', minWidth: 0, boxSizing: 'border-box' }}
+              >
+                <div className="flex min-w-0">
+                  <Button
+                    variant="outline"
+                    className="w-full text-left text-2xl font-bold mb-4 gradient-text py-4 px-2 rounded-xl whitespace-normal break-words min-w-0"
+                    style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0, boxSizing: 'border-box' }}
+                  >
+                    <span className="block min-w-0 break-words whitespace-normal">{field.title}</span>
+                  </Button>
+                </div>
+                <p className="text-gray-300 mb-4 text-base whitespace-normal break-words min-w-0" style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0 }}>{field.description}</p>
+                <Button
+                  variant="default"
+                  className="mb-4 px-6 py-3 text-lg font-semibold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-xl"
+                  onClick={() => window.open(field.route, '_blank')}
+                >
+                  Explore path
+                </Button>
+              </motion.div>
+            ))}
+
+            {/* Remaining careers as before */}
+            {remainingCareers.map(field => (
               <motion.div
                 key={field.id}
                 initial={{ opacity: 0, y: 20 }}
