@@ -11,6 +11,7 @@ import TestResults from '@/pages/TestResults';
 import CareerRoadmap from '@/pages/CareerRoadmap';
 import RoadmapDetails from '@/pages/RoadmapDetails';
 import ProjectDocumentation from '@/pages/ProjectDocumentation';
+import CareerFieldsPage from '@/pages/CareerFieldsPage';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="/career-roadmap/:career" element={<CareerRoadmap />} />
           <Route path="/roadmap-details" element={<RoadmapDetails />} />
           <Route path="/documentation" element={<ProjectDocumentation />} />
+          <Route path="/career-fields" element={<CareerFieldsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster />

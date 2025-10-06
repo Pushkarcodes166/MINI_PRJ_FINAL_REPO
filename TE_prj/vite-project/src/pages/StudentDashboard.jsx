@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { Brain, Target, BookOpen, TrendingUp, LogOut, User, Award } from 'lucide-react';
+import scienceCareers from '../data/science_careers.js';
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
@@ -84,6 +85,7 @@ const StudentDashboard = () => {
             </p>
           </motion.div>
 
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -152,27 +154,38 @@ const StudentDashboard = () => {
             </motion.div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="glass-effect rounded-3xl p-12 text-center"
-          >
-            <Brain className="w-20 h-20 text-purple-400 mx-auto mb-6" />
-            <h2 className="text-3xl font-bold mb-4 gradient-text">
-              {testResults ? 'Retake Career Aptitude Test' : 'Take Career Aptitude Test'}
-            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Our AI-powered 20-question aptitude test analyzes your interests, skills, and personality to recommend the perfect career path for you.
-            </p>
-            <Button 
+          {/* Explore Career Paths Button */}
+          <div className="flex justify-center mb-12">
+            <Button
               size="lg"
-              onClick={handleStartTest}
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-12"
+              onClick={() => navigate('/career-fields')}
             >
-              {testResults ? 'Retake Test' : 'Start Test Now'}
+              Explore Career Paths
             </Button>
-          </motion.div>
+          </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+        className="glass-effect rounded-3xl p-12 text-center"
+      >
+        <Brain className="w-20 h-20 text-purple-400 mx-auto mb-6" />
+        <h2 className="text-3xl font-bold mb-4 gradient-text">
+          {testResults ? 'Retake Career Aptitude Test' : 'Take Career Aptitude Test'}
+        </h2>
+        <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+          Our AI-powered 20-question aptitude test analyzes your interests, skills, and personality to recommend the perfect career path for you.
+        </p>
+        <Button 
+          size="lg"
+          onClick={handleStartTest}
+          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-12"
+        >
+          {testResults ? 'Retake Test' : 'Start Test Now'}
+        </Button>
+      </motion.div>
         </div>
       </div>
     </>
