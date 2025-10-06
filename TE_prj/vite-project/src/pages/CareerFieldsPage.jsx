@@ -8,13 +8,19 @@ const mainFields = [
   {
     id: 'engineering',
     title: 'Engineering',
-    description: 'Professional engineering across multiple disciplines including Computer Science & IT, Mechanical, Chemical, Electrical, Electronic, Aerospace, Aeronautical, Biomedical.',
+    description: 'Professional engineering across multiple disciplines including Computer Science & IT, Mechanical, Chemical, Civil, General, Electrical, Electronic, Aerospace, Aeronautical, Biomedical.',
     route: '/careers/engineering'
+  },
+  {
+    id: 'biology_health',
+    title: 'Biology and Health',
+    description: 'Medical, Pharmacy, Nursing, Allied Health, Biotechnology & Life Sciences careers clubbed together for biology and health sciences.',
+    route: '/careers/biology-health'
   }
 ];
 
 // All careers except those clubbed under Engineering
-const engineeringIds = [
+const clubbedIds = [
   'engineering_general',
   'computer_science_it',
   'mechanical_engineering',
@@ -22,9 +28,13 @@ const engineeringIds = [
   'civil_engineering',
   'electrical_electronics',
   'aerospace_engineering',
-  'biomedical_engineering'
+  'biomedical_engineering',
+  'medical_mbbs',
+  'pharmacy',
+  'nursing_allied',
+  'biotechnology'
 ];
-const remainingCareers = scienceCareers.filter(c => !engineeringIds.includes(c.id));
+const remainingCareers = scienceCareers.filter(c => !clubbedIds.includes(c.id));
 
 
 const CareerFieldsPage = () => {
