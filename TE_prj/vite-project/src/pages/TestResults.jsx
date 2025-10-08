@@ -41,7 +41,7 @@ const TestResults = () => {
         <meta name="description" content="View your career aptitude test results and personalized recommendations." />
       </Helmet>
 
-      <div className="min-h-screen relative overflow-hidden">
+  <div className="min-h-screen relative overflow-hidden text-base">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 animate-gradient" />
         
         <nav className="relative z-10 glass-effect border-b border-white/10">
@@ -65,13 +65,13 @@ const TestResults = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <Trophy className="w-20 h-20 text-yellow-400 mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Congratulations, <span className="gradient-text">{user.name}</span>! 🎉
+            <div className="inline-flex items-center justify-center w-28 h-28 rounded-full bg-gradient-to-br from-yellow-400 to-pink-400 shadow-xl mb-6">
+              <Trophy className="w-12 h-12 text-white" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-serif font-extrabold mb-2">
+              Well done, <span className="gradient-text">{user.name}</span>
             </h1>
-            <p className="text-xl text-gray-300">
-              You've completed the career aptitude test. Here are your personalized results!
-            </p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">Your skills align with the following career paths — explore the roadmap for each to plan your next steps.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-6 mb-12">
@@ -119,49 +119,41 @@ const TestResults = () => {
             className="glass-effect rounded-3xl p-8 mb-12"
           >
             <h2 className="text-3xl font-bold mb-6 gradient-text">Your Top Career Recommendations</h2>
-            <div className="space-y-4">
+            <div className="grid md:grid-cols-3 gap-6">
               {results.recommendations.map((rec, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className={`p-6 rounded-xl ${
-                    index === 0
-                      ? 'bg-gradient-to-r from-purple-600/20 to-pink-600/20 border-2 border-purple-400'
-                      : 'glass-effect'
-                  }`}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(`/roadmap-details?career=${encodeURIComponent(rec.career)}`, { state: { career: rec.career } })}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') navigate(`/roadmap-details?career=${encodeURIComponent(rec.career)}`, { state: { career: rec.career } }); }}
+                  whileHover={{ scale: 1.03, rotateX: 3, rotateY: -3 }}
+                  whileTap={{ scale: 0.99 }}
+                  transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                  style={{ transformStyle: 'preserve-3d', perspective: 900 }}
+                  className={`p-6 rounded-2xl shadow-2xl cursor-pointer overflow-hidden relative ${index === 0 ? 'bg-gradient-to-br from-purple-700 to-pink-600 text-white' : 'bg-gray-900 text-gray-100'}`}
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                        index === 0 ? 'bg-gradient-to-r from-purple-600 to-pink-600' : 'bg-gray-700'
-                      }`}>
-                        <span className="text-xl font-bold">#{index + 1}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-2xl font-bold">{rec.career}</h3>
-                        <p className="text-gray-400">Match Score: {rec.score}/{results.totalQuestions}</p>
+                  <div className="absolute -right-6 -top-6 opacity-30 text-white text-9xl font-black select-none">{index+1}</div>
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold ${index===0?'bg-white/20':'bg-gray-700'}`}>
+                      <span className="text-xl">{rec.career.split(' ')[0][0]}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-extrabold">{rec.career}</h3>
+                      <p className="text-sm mt-1 text-gray-200">Match Score: <span className="font-semibold">{rec.score}/{results.totalQuestions}</span></p>
+                      <div className="mt-3 flex items-center gap-2">
+                        <span className="px-2 py-1 text-xs rounded-full bg-white/10">Top skills</span>
+                        <span className="px-2 py-1 text-xs rounded-full bg-white/10">Courses</span>
                       </div>
                     </div>
-                    {index === 0 && (
-                      <Button
-                        onClick={() => navigate(`/career-roadmap/${rec.career}`)}
-                        className="bg-gradient-to-r from-purple-600 to-pink-600"
-                      >
-                        View Roadmap
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    )}
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-3">
-                    <div
-                      className={`h-3 rounded-full ${
-                        index === 0
-                          ? 'bg-gradient-to-r from-purple-600 to-pink-600'
-                          : 'bg-gray-500'
-                      }`}
-                      style={{ width: `${(rec.score / results.totalQuestions) * 100}%` }}
-                    />
+                  <div className="mt-6">
+                    <div className="w-full bg-white/10 rounded-full h-3">
+                      <div className="h-3 rounded-full bg-gradient-to-r from-green-400 to-blue-500" style={{ width: `${(rec.score / results.totalQuestions) * 100}%` }} />
+                    </div>
+                    <div className="mt-3 text-sm text-gray-300">Click to view full roadmap & recommended courses</div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
@@ -205,7 +197,7 @@ const TestResults = () => {
           >
             <Button
               size="lg"
-              onClick={() => navigate(`/career-roadmap/${results.topCareer}`)}
+              onClick={() => navigate(`/roadmap-details?career=${encodeURIComponent(results.topCareer)}`, { state: { career: results.topCareer } })}
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-12"
             >
               Explore Your Career Roadmap

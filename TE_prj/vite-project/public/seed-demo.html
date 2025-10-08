@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Seed Demo LocalStorage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <script>
+      // Demo user + test results for the Test Results page
+      const currentUser = { id: 'demo-student', role: 'student', name: 'Demo Student' };
+      localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+      const demoResults = {
+        score: 15,
+        totalQuestions: 20,
+        topCareer: 'Computer Engineering',
+        recommendations: [
+          { career: 'Computer Engineering', score: 15 },
+          { career: 'Mechanical Engineering', score: 12 },
+          { career: 'Electrical Engineering', score: 10 }
+        ],
+        detailedScores: {
+          'Computer Engineering': 15,
+          'Mechanical Engineering': 12,
+          'Electrical Engineering': 10
+        }
+      };
+      localStorage.setItem(`testResults_${currentUser.id}`, JSON.stringify(demoResults));
+
+      // Redirect to test results
+      window.location.href = '/test-results';
+    </script>
+    <p>Seeding demo data and redirecting to Test Results...</p>
+  </body>
+</html>

@@ -6,11 +6,13 @@ import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 import { Brain, Target, BookOpen, TrendingUp, LogOut, User, Award } from 'lucide-react';
 import scienceCareers from '../data/science_careers.js';
+import ProfileEditModal from '@/components/ProfileEditModal';
 
 const StudentDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [testResults, setTestResults] = useState(null);
+  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
@@ -71,17 +73,17 @@ const StudentDashboard = () => {
           </div>
         </nav>
 
-        <div className="relative z-10 container mx-auto px-6 py-12">
+        <div className="relative z-10 container mx-auto px-6 py-12 text-base">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Welcome back, <span className="gradient-text">{user.name}</span>! 👋
+            <h1 className="text-5xl md:text-6xl font-serif font-extrabold mb-4">
+              Hello, <span className="gradient-text">{user.name}</span>
             </h1>
-            <p className="text-xl text-gray-300">
-              Ready to discover your perfect career path?
+            <p className="text-xl md:text-2xl text-gray-300">
+              Personalized guidance, curated roadmaps and tailored next steps for your goals.
             </p>
           </motion.div>
 
@@ -91,41 +93,62 @@ const StudentDashboard = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="glass-effect p-6 rounded-2xl"
+              className="p-6 rounded-2xl bg-gradient-to-br from-white/5 to-white/3 border border-white/5"
             >
-              <User className="w-12 h-12 text-purple-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Profile</h3>
-              <div className="space-y-2 text-gray-300">
-                <p><span className="text-gray-400">Email:</span> {user.email}</p>
-                <p><span className="text-gray-400">Class:</span> {user.class}</p>
-                <p><span className="text-gray-400">Interests:</span> {user.interests}</p>
+              <div className="flex items-start gap-4">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-purple-700 to-pink-600 flex items-center justify-center text-white text-2xl font-bold shadow-xl">
+                  {user.name ? user.name.split(' ').map(n => n[0]).slice(0,2).join('') : 'U'}
+                </div>
+                <div>
+                  <h3 className="text-2xl font-serif font-bold mb-1">{user.name}</h3>
+                  <p className="text-sm text-gray-300 mb-2">{user.email}</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="px-3 py-1 rounded-full bg-purple-700/10 text-sm">Class: {user.class || 'N/A'}</span>
+                    <span className="px-3 py-1 rounded-full bg-pink-700/10 text-sm">Interests: {user.interests || '—'}</span>
+                  </div>
+                </div>
               </div>
+              <div className="mt-4 text-sm text-gray-300">Complete your profile to get personalized roadmap suggestions and notifications about relevant courses.</div>
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="glass-effect p-6 rounded-2xl"
+              className="rounded-2xl p-6"
             >
-              <Target className="w-12 h-12 text-pink-400 mb-4" />
-              <h3 className="text-xl font-bold mb-2">Test Status</h3>
               {testResults ? (
-                <div className="space-y-2">
-                  <p className="text-green-400 font-semibold">✓ Test Completed</p>
-                  <p className="text-gray-300">Score: {testResults.score}/20</p>
-                  <Button 
-                    onClick={() => navigate('/test-results')}
-                    className="mt-4 w-full"
-                    variant="outline"
-                  >
-                    View Results
-                  </Button>
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-green-600 to-teal-500 text-white shadow-xl">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="text-sm uppercase opacity-90">Test Status</div>
+                      <div className="text-2xl md:text-3xl font-serif font-bold">Completed ✓</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-sm">Score</div>
+                      <div className="text-3xl font-bold">{testResults.score}/{testResults.totalQuestions}</div>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-sm opacity-90">Great job! Your personalized recommendations are ready. Explore roadmaps for each match to plan next steps.</div>
+                  <div className="mt-6">
+                    <Button
+                      onClick={() => navigate('/test-results')}
+                      className="w-full bg-white text-green-700 font-serif font-bold px-6 py-3 rounded-full shadow-lg hover:scale-[1.01]"
+                    >
+                      View Results
+                    </Button>
+                  </div>
                 </div>
               ) : (
-                <div className="space-y-2">
-                  <p className="text-yellow-400 font-semibold">⚠ Test Pending</p>
-                  <p className="text-gray-300">Take the aptitude test to get recommendations</p>
+                <div className="p-6 rounded-2xl bg-yellow-600/10 border border-yellow-400/10">
+                  <div className="text-sm uppercase text-yellow-400">Test Status</div>
+                  <div className="text-2xl md:text-3xl font-serif font-bold text-yellow-300">Pending</div>
+                  <p className="mt-2 text-gray-300">Take the aptitude test to receive tailored career recommendations and roadmaps.</p>
+                  <div className="mt-4">
+                    <Button size="lg" onClick={handleStartTest} className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-6 py-2 rounded-full">
+                      Start Test Now
+                    </Button>
+                  </div>
                 </div>
               )}
             </motion.div>
@@ -140,17 +163,32 @@ const StudentDashboard = () => {
               <h3 className="text-xl font-bold mb-2">Recommendations</h3>
               {testResults ? (
                 <div className="space-y-2">
-                  <p className="text-gray-300">Top Career: <span className="text-purple-400 font-semibold">{testResults.topCareer}</span></p>
-                  <Button 
-                    onClick={() => navigate(`/career-roadmap/${testResults.topCareer}`)}
-                    className="mt-4 w-full bg-gradient-to-r from-purple-600 to-pink-600"
+                  <motion.div className="p-4 rounded-lg bg-gradient-to-br from-purple-700 to-pink-600 text-white cursor-pointer hover:scale-102 transform transition"
+                    onClick={() => navigate(`/roadmap-details?career=${encodeURIComponent(testResults.topCareer)}`, { state: { career: testResults.topCareer } })}
+                    whileHover={{ scale: 1.03, rotateX: 3 }}
+                    whileTap={{ scale: 0.99 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 18 }}
+                    style={{ transformStyle: 'preserve-3d', perspective: 900 }}
                   >
-                    View Roadmap
-                  </Button>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="text-sm text-white/90">Top Career</div>
+                        <div className="text-2xl font-serif font-bold">{testResults.topCareer}</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-sm">Score</div>
+                        <div className="text-xl font-bold">{testResults.score}/{testResults.totalQuestions}</div>
+                      </div>
+                    </div>
+                    <div className="mt-3 text-sm text-white/80">Click card to open full roadmap and recommended courses.</div>
+                  </motion.div>
                 </div>
               ) : (
                 <p className="text-gray-400">Complete the test to see recommendations</p>
               )}
+              <div className="mt-4">
+                <Button variant="outline" onClick={() => setEditing(true)}>Edit Profile</Button>
+              </div>
             </motion.div>
           </div>
 
@@ -186,6 +224,7 @@ const StudentDashboard = () => {
           {testResults ? 'Retake Test' : 'Start Test Now'}
         </Button>
       </motion.div>
+        <ProfileEditModal open={editing} onClose={() => setEditing(false)} user={user} onSave={(u) => setUser(u)} />
         </div>
       </div>
     </>
