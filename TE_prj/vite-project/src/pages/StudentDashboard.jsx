@@ -50,7 +50,7 @@ const StudentDashboard = () => {
 
       <div className="min-h-screen relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 animate-gradient" />
-        
+
         <nav className="relative z-10 glass-effect border-b border-white/10">
           <div className="container mx-auto px-6 py-4">
             <div className="flex items-center justify-between">

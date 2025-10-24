@@ -75,17 +75,19 @@ export default function RoadmapDetails() {
   }
 
   return (
-    <div className="max-w-5xl mx-auto p-8">
-      <div className="flex items-start gap-8 mb-8">
-        <div className="flex-1">
-          <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-700 to-pink-600 text-white shadow-xl">
-            <h1 className="text-3xl font-extrabold">{details.title} Roadmap</h1>
-            <p className="mt-2 text-sm opacity-90">{details.description}</p>
-            <div className="mt-4 flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full bg-white/20">Eligibility</span>
-              <span className="text-sm font-medium">{details.eligibility || 'Check college requirements'}</span>
+    <div className="min-h-screen relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-indigo-900/20 animate-gradient" />
+      <div className="relative z-10 max-w-5xl mx-auto p-8">
+        <div className="flex items-start gap-8 mb-8">
+          <div className="flex-1">
+            <div className="p-6 rounded-2xl bg-gradient-to-r from-purple-700 to-pink-600 text-white shadow-xl">
+              <h1 className="text-3xl font-extrabold">{details.title} Roadmap</h1>
+              <p className="mt-2 text-sm opacity-90">{details.description}</p>
+              <div className="mt-4 flex items-center gap-3">
+                <span className="px-3 py-1 rounded-full bg-white/20">Eligibility</span>
+                <span className="text-sm font-medium">{details.eligibility || 'Check college requirements'}</span>
+              </div>
             </div>
-          </div>
 
           <div className="mt-8 grid md:grid-cols-12 gap-6">
             <div className="md:col-span-8">
@@ -152,8 +154,9 @@ export default function RoadmapDetails() {
         </div>
       </div>
 
-      <div className="mt-10 text-center">
-        <button className="px-6 py-3 bg-white text-purple-700 rounded-full font-bold shadow" onClick={() => navigate(-1)}>Back to Results</button>
+        <div className="mt-10 text-center">
+          <button className="px-6 py-3 bg-white text-purple-700 rounded-full font-bold shadow" onClick={() => navigate(-1)}>Back to Results</button>
+        </div>
       </div>
     </div>
   );
