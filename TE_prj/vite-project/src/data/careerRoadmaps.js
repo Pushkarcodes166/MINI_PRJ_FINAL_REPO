@@ -509,5 +509,346 @@ export const careerRoadmaps = {
       salary: "Entry-level: ₹5-10 LPA | Mid-level: ₹12-25 LPA | Senior: ₹30-50 LPA",
       trends: "Wearable devices, AI in diagnostics, regenerative medicine, telemedicine, and 3D-printed organs are key growth areas."
     }
+  },
+  "Medical (MBBS/BDS/AYUSH)": {
+    description: "Clinical practice and medical research; MBBS leads to physician/medical specialist careers; BDS for dentistry; AYUSH for traditional medicine.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCB - Physics, Chemistry, Biology) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCB required for medical courses)",
+      "MBBS (5.5 years including internship)",
+      "BDS (5 years)",
+      "AYUSH programs (5.5 years including internship)",
+      "MD/MS/DNB (3 years - Optional specialization)"
+    ],
+    skills: [
+      "Clinical Diagnosis",
+      "Patient Care",
+      "Medical Ethics",
+      "Surgical Skills",
+      "Communication",
+      "Emergency Response",
+      "Medical Research",
+      "Healthcare Management"
+    ],
+    careers: [
+      {
+        title: "General Physician",
+        description: "Primary healthcare provider",
+        salary: "₹8-15 LPA"
+      },
+      {
+        title: "Medical Specialist",
+        description: "Specialized medical practice",
+        salary: "₹15-40 LPA"
+      },
+      {
+        title: "Surgeon",
+        description: "Surgical procedures and operations",
+        salary: "₹20-50 LPA"
+      },
+      {
+        title: "Dentist",
+        description: "Dental care and oral health",
+        salary: "₹6-20 LPA"
+      },
+      {
+        title: "Ayurvedic Practitioner",
+        description: "Traditional medicine practice",
+        salary: "₹5-15 LPA"
+      },
+      {
+        title: "Medical Researcher",
+        description: "Medical research and development",
+        salary: "₹10-25 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Anatomy & Physiology",
+        description: "Human body systems and functions",
+        duration: "1 year",
+        platform: "Medical Colleges"
+      },
+      {
+        name: "Clinical Medicine",
+        description: "Patient diagnosis and treatment",
+        duration: "2 years",
+        platform: "Medical Colleges"
+      },
+      {
+        name: "Surgery Training",
+        description: "Surgical procedures and techniques",
+        duration: "2 years",
+        platform: "Medical Colleges"
+      },
+      {
+        name: "Medical Ethics & Law",
+        description: "Healthcare ethics and legal aspects",
+        duration: "6 months",
+        platform: "Medical Colleges"
+      }
+    ],
+    insights: {
+      growth: "Medical field shows 15% growth with increasing healthcare demands and aging population.",
+      salary: "Entry-level: ₹6-12 LPA | Mid-level: ₹15-25 LPA | Senior: ₹30-60 LPA",
+      trends: "Telemedicine, AI in diagnostics, personalized medicine, and preventive healthcare are key trends."
+    }
+  },
+  "Pharmacy": {
+    description: "Pharmaceutical sciences: drug development, manufacturing, clinical trials and regulatory affairs.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCB/PCM - Physics, Chemistry, Biology/Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM/PCB required)",
+      "B.Pharm (4 years)",
+      "M.Pharm (2 years - Optional)",
+      "Pharm.D (6 years - Clinical pharmacy)",
+      "Ph.D. in Pharmacy (3-5 years - For Research)"
+    ],
+    skills: [
+      "Drug Formulation",
+      "Quality Control",
+      "Regulatory Compliance",
+      "Clinical Research",
+      "Pharmacokinetics",
+      "Drug Safety",
+      "Pharmaceutical Chemistry",
+      "Healthcare Management"
+    ],
+    careers: [
+      {
+        title: "Clinical Pharmacist",
+        description: "Patient medication management",
+        salary: "₹4-8 LPA"
+      },
+      {
+        title: "Pharmaceutical Researcher",
+        description: "Drug development and research",
+        salary: "₹6-15 LPA"
+      },
+      {
+        title: "Quality Control Analyst",
+        description: "Drug quality assurance",
+        salary: "₹5-12 LPA"
+      },
+      {
+        title: "Regulatory Affairs Specialist",
+        description: "Drug approval and compliance",
+        salary: "₹8-18 LPA"
+      },
+      {
+        title: "Medical Representative",
+        description: "Pharmaceutical sales and marketing",
+        salary: "₹3-10 LPA"
+      },
+      {
+        title: "Hospital Pharmacist",
+        description: "Hospital medication services",
+        salary: "₹4-9 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Pharmaceutical Chemistry",
+        description: "Drug synthesis and analysis",
+        duration: "1 year",
+        platform: "Pharmacy Colleges"
+      },
+      {
+        name: "Pharmacology",
+        description: "Drug actions and effects",
+        duration: "1 year",
+        platform: "Pharmacy Colleges"
+      },
+      {
+        name: "Clinical Pharmacy",
+        description: "Patient-focused pharmacy practice",
+        duration: "1 year",
+        platform: "Pharmacy Colleges"
+      },
+      {
+        name: "Regulatory Affairs",
+        description: "Drug regulations and compliance",
+        duration: "6 months",
+        platform: "Online Platforms"
+      }
+    ],
+    insights: {
+      growth: "Pharmacy sector shows 12% growth with expanding pharmaceutical industry and healthcare needs.",
+      salary: "Entry-level: ₹3-6 LPA | Mid-level: ₹8-15 LPA | Senior: ₹18-30 LPA",
+      trends: "Biopharmaceuticals, personalized medicine, digital health, and telemedicine are emerging trends."
+    }
+  },
+  "Nursing & Allied Health Sciences": {
+    description: "Clinical support roles: nursing, physiotherapy, occupational therapy, radiography, lab technology.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCB - Physics, Chemistry, Biology) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCB required)",
+      "B.Sc Nursing (4 years)",
+      "BPT (Physiotherapy) (4.5 years)",
+      "BMLT (Medical Lab Technology) (3 years)",
+      "Diploma courses (2-3 years)",
+      "M.Sc/Master's (2 years - Optional)"
+    ],
+    skills: [
+      "Patient Care",
+      "Clinical Procedures",
+      "Medical Equipment Operation",
+      "Emergency Response",
+      "Health Education",
+      "Rehabilitation Techniques",
+      "Laboratory Testing",
+      "Healthcare Documentation"
+    ],
+    careers: [
+      {
+        title: "Registered Nurse",
+        description: "Patient care and nursing services",
+        salary: "₹3-8 LPA"
+      },
+      {
+        title: "Physiotherapist",
+        description: "Physical rehabilitation and therapy",
+        salary: "₹4-10 LPA"
+      },
+      {
+        title: "Medical Lab Technician",
+        description: "Laboratory testing and analysis",
+        salary: "₹3-7 LPA"
+      },
+      {
+        title: "Radiographer",
+        description: "Medical imaging and radiology",
+        salary: "₹4-9 LPA"
+      },
+      {
+        title: "Occupational Therapist",
+        description: "Rehabilitation and daily living skills",
+        salary: "₹4-11 LPA"
+      },
+      {
+        title: "Healthcare Administrator",
+        description: "Healthcare facility management",
+        salary: "₹5-12 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Fundamentals of Nursing",
+        description: "Basic nursing care and procedures",
+        duration: "6 months",
+        platform: "Nursing Colleges"
+      },
+      {
+        name: "Clinical Practice",
+        description: "Hands-on clinical training",
+        duration: "1 year",
+        platform: "Nursing Colleges"
+      },
+      {
+        name: "Medical Laboratory Technology",
+        description: "Lab testing and procedures",
+        duration: "1 year",
+        platform: "Medical Colleges"
+      },
+      {
+        name: "Physiotherapy Techniques",
+        description: "Rehabilitation and therapy methods",
+        duration: "1 year",
+        platform: "Physiotherapy Colleges"
+      }
+    ],
+    insights: {
+      growth: "Healthcare support roles show 18% growth with expanding healthcare infrastructure.",
+      salary: "Entry-level: ₹3-5 LPA | Mid-level: ₹6-12 LPA | Senior: ₹15-25 LPA",
+      trends: "Telehealth, home healthcare, geriatric care, and specialized rehabilitation are key trends."
+    }
+  },
+  "Biotechnology & Life Sciences": {
+    description: "Study and application of biological systems for health, agriculture, industry and environment.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCB/PCM - Physics, Chemistry, Biology/Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCB/PCM required)",
+      "B.Tech/B.Sc in Biotechnology (4 years)",
+      "M.Sc/M.Tech in Biotechnology (2 years - Optional)",
+      "Ph.D. in Biotechnology (3-5 years - For Research)",
+      "Specialized certifications in biotech domains"
+    ],
+    skills: [
+      "Molecular Biology",
+      "Genetic Engineering",
+      "Biochemical Analysis",
+      "Microbial Technology",
+      "Bioinformatics",
+      "Research Methodology",
+      "Quality Control",
+      "Regulatory Compliance"
+    ],
+    careers: [
+      {
+        title: "Biotechnologist",
+        description: "Biotech research and development",
+        salary: "₹5-12 LPA"
+      },
+      {
+        title: "Research Scientist",
+        description: "Scientific research in biotech",
+        salary: "₹6-15 LPA"
+      },
+      {
+        title: "Quality Control Analyst",
+        description: "Product quality assurance",
+        salary: "₹4-10 LPA"
+      },
+      {
+        title: "Bioinformatics Specialist",
+        description: "Biological data analysis",
+        salary: "₹7-18 LPA"
+      },
+      {
+        title: "Clinical Research Associate",
+        description: "Clinical trials and research",
+        salary: "₹5-14 LPA"
+      },
+      {
+        title: "Biotech Product Manager",
+        description: "Product development and management",
+        salary: "₹8-20 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Molecular Biology",
+        description: "Cellular and molecular processes",
+        duration: "6 months",
+        platform: "Online Platforms"
+      },
+      {
+        name: "Genetic Engineering",
+        description: "Gene manipulation techniques",
+        duration: "6 months",
+        platform: "Online Platforms"
+      },
+      {
+        name: "Bioinformatics",
+        description: "Biological data analysis",
+        duration: "4 months",
+        platform: "Coursera, edX"
+      },
+      {
+        name: "Clinical Research",
+        description: "Clinical trials methodology",
+        duration: "3 months",
+        platform: "Simplilearn, Udemy"
+      }
+    ],
+    insights: {
+      growth: "Biotechnology shows 14% growth with advancements in healthcare, agriculture, and industrial applications.",
+      salary: "Entry-level: ₹4-7 LPA | Mid-level: ₹10-18 LPA | Senior: ₹20-35 LPA",
+      trends: "CRISPR technology, synthetic biology, personalized medicine, and agricultural biotech are key trends."
+    }
   }
 };

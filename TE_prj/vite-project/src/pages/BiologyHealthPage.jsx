@@ -2,19 +2,42 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
-import scienceCareers from '../data/science_careers.js';
+import { useNavigate } from 'react-router-dom';
+import { careerRoadmaps } from '../data/careerRoadmaps.js';
 
-const biologyHealthIds = [
-  'medical_mbbs',
-  'pharmacy',
-  'nursing_allied',
-  'biotechnology'
+const biologyHealthCareers = [
+  {
+    id: 'medical_mbbs',
+    title: 'Medical (MBBS/BDS/AYUSH)',
+    description: 'Clinical practice and medical research; MBBS leads to physician/medical specialist careers; BDS for dentistry; AYUSH for traditional medicine.',
+    icon: '🏥'
+  },
+  {
+    id: 'pharmacy',
+    title: 'Pharmacy',
+    description: 'Pharmaceutical sciences: drug development, manufacturing, clinical trials and regulatory affairs.',
+    icon: '💊'
+  },
+  {
+    id: 'nursing_allied',
+    title: 'Nursing & Allied Health Sciences',
+    description: 'Clinical support roles: nursing, physiotherapy, occupational therapy, radiography, lab technology.',
+    icon: '👩‍⚕️'
+  },
+  {
+    id: 'biotechnology',
+    title: 'Biotechnology & Life Sciences',
+    description: 'Study and application of biological systems for health, agriculture, industry and environment.',
+    icon: '🧬'
+  }
 ];
 
-const biologyHealthCareers = scienceCareers.filter(c => biologyHealthIds.includes(c.id));
-
 const BiologyHealthPage = () => {
-  const [openField, setOpenField] = useState(null);
+  const navigate = useNavigate();
+
+  const handleExploreRoadmap = (careerId) => {
+    navigate(`/roadmap-details/${careerId}`);
+  };
 
   return (
     <>
@@ -24,45 +47,113 @@ const BiologyHealthPage = () => {
       <div className="min-h-screen relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 animate-gradient" />
         <div className="relative z-10 container mx-auto px-6 py-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-8 gradient-text text-center">Biology and Health Careers</h1>
-          <div className="flex flex-col gap-8 w-full max-w-3xl mx-auto">
-            {biologyHealthCareers.map(field => (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">Biology and Health Careers</h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Discover rewarding careers in healthcare, medicine, and life sciences. From clinical practice to research and innovation,
+              find your path in the growing field of biology and health.
+            </p>
+          </motion.div>
+
+          {/* Common Pathway Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="glass-effect p-8 rounded-3xl mb-12 border border-purple-700/30"
+          >
+            <h2 className="text-3xl font-bold mb-6 gradient-text text-center">Common Pathway for Biology & Health Careers</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-purple-400">Educational Foundation</h3>
+                <ul className="space-y-2 text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Complete 10th Standard
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Choose Science Stream (PCB - Physics, Chemistry, Biology) in 11th and 12th
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Complete 12th Standard with good percentage (minimum 50% in PCB required)
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-purple-400">Key Skills Development</h3>
+                <ul className="space-y-2 text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Strong foundation in Biology, Chemistry, and Physics
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Research and analytical thinking
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    Communication and interpersonal skills
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Career Specializations Grid */}
+          <div className="grid md:grid-cols-2 gap-8">
+            {biologyHealthCareers.map((career, index) => (
               <motion.div
-                key={field.id}
+                key={career.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="glass-effect p-8 rounded-3xl card-hover shadow-lg border border-purple-700/30 w-full flex flex-col min-w-0"
-                style={{ wordBreak: 'break-word', overflowWrap: 'break-word', minWidth: 0, boxSizing: 'border-box' }}
+                transition={{ delay: index * 0.1 }}
+                className="glass-effect p-6 rounded-3xl card-hover shadow-lg border border-purple-700/30"
               >
-                <div className="flex min-w-0">
-                  <Button
-                    variant="outline"
-                    className="w-full text-left text-2xl font-bold mb-4 gradient-text py-4 px-2 rounded-xl whitespace-normal break-words min-w-0"
-                    onClick={() => setOpenField(openField === field.id ? null : field.id)}
-                    style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0, boxSizing: 'border-box' }}
-                  >
-                    <span className="block min-w-0 break-words whitespace-normal">{field.title}</span>
-                  </Button>
+                <div className="text-center mb-4">
+                  <div className="text-6xl mb-4">{career.icon}</div>
+                  <h3 className="text-2xl font-bold mb-2 gradient-text">{career.title}</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">{career.description}</p>
                 </div>
-                <p className="text-gray-300 mb-4 text-base whitespace-normal break-words min-w-0" style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0 }}>{field.description}</p>
-                {openField === field.id && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    className="mt-4"
-                  >
-                    <h4 className="font-semibold mb-2 text-purple-400 text-lg">Pathway Steps:</h4>
-                    <ul className="list-decimal ml-6 text-gray-300 text-base whitespace-normal break-words min-w-0" style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0 }}>
-                      {field.roadmap_steps.split('|').map((step, idx) => (
-                        <li key={idx} className="mb-2 whitespace-normal break-words min-w-0" style={{ whiteSpace: 'normal', wordBreak: 'break-word', minWidth: 0 }}>{step.trim()}</li>
-                      ))}
-                    </ul>
-                  </motion.div>
-                )}
+                <Button
+                  onClick={() => handleExploreRoadmap(career.id)}
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  Explore Detailed Roadmap
+                </Button>
               </motion.div>
             ))}
           </div>
+
+          {/* Career Insights */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-12 glass-effect p-8 rounded-3xl border border-purple-700/30"
+          >
+            <h2 className="text-3xl font-bold mb-6 gradient-text text-center">Career Insights</h2>
+            <div className="grid md:grid-cols-3 gap-6 text-center">
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-purple-400">Growth</h3>
+                <p className="text-gray-300">Healthcare sector shows 12-18% growth with increasing demand for medical professionals and aging population.</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-purple-400">Salary Range</h3>
+                <p className="text-gray-300">Entry-level: ₹3-8 LPA | Mid-level: ₹8-20 LPA | Senior: ₹20-60 LPA depending on specialization.</p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold mb-2 text-purple-400">Trends</h3>
+                <p className="text-gray-300">Telemedicine, AI in diagnostics, personalized medicine, biotechnology advancements, and preventive healthcare.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </>
