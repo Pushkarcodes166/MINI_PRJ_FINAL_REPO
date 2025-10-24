@@ -36,7 +36,7 @@ const BiologyHealthPage = () => {
   const navigate = useNavigate();
 
   const handleExploreRoadmap = (careerId) => {
-    navigate(`/roadmap-details/${careerId}`);
+    navigate(`/roadmap-details?career=${encodeURIComponent(careerId)}`);
   };
 
   return (
