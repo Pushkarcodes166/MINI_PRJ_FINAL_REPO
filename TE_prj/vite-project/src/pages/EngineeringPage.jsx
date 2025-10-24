@@ -7,16 +7,14 @@ import { Cpu, Wrench, Beaker as Flask, Building, Zap, Plane, Heart, Code, Chevro
 import scienceCareers from '../data/science_careers.js';
 
 const engineeringCareers = scienceCareers.filter(career =>
-  career.id.includes('engineering') || career.id === 'computer_science_it' || career.id === 'aerospace_engineering' || career.id === 'biomedical_engineering'
+  (career.id.includes('engineering') && career.id !== 'engineering_general') || career.id === 'computer_science_it'
 );
 
 const commonRoadmap = [
-  "Complete high school with strong foundation in Mathematics, Physics, and Chemistry",
-  "Pursue undergraduate degree in Engineering (4 years)",
-  "Gain practical experience through internships or projects",
-  "Obtain professional certifications if required",
-  "Pursue advanced degrees or specializations for career advancement",
-  "Build a professional network and continuous learning"
+  "Complete Class 10 with Science & Math foundation",
+  "Choose PCM in Class 11-12 and prepare for engineering entrance exams",
+  "Clear entrance exam and get admission into B.E/B.Tech program",
+
 ];
 
 const EngineeringPage = () => {

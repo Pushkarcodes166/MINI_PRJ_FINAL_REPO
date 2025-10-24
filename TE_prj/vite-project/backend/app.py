@@ -11,7 +11,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load dataset from CSV (robustly read rows of correct length)
-csv_path = r'C:\Users\SHRAVANI NANDVIKAR\Desktop\f1\career_guidance_updated\TE_prj\vite-project\src\data\science_careers.csv'
+csv_path = r'c:/Users/Eesha Potnis/Desktop/f1/TE_prj/vite-project/src/data/science_careers.csv'
 import csv
 clean_rows = []
 with open(csv_path, encoding='utf-8') as f:

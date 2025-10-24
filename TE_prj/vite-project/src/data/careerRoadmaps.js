@@ -1,20 +1,24 @@
 export const careerRoadmaps = {
-  "Computer Engineering": {
-    description: "Build the future with code, AI, and innovative software solutions. Computer Engineering combines hardware and software to create cutting-edge technology.",
+  "Computer Science & IT": {
+    description: "Software development, systems design, data engineering, AI/ML, cybersecurity and related tech roles.",
     education: [
-      "B.E./B.Tech in Computer Engineering (4 years)",
-      "M.Tech in Computer Science/AI/ML (2 years - Optional)",
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Optional but beneficial: Choose Computer Science / IT / IP as an additional subject in 11th-12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.Tech/B.E in CS/IT (4 years)",
+      "MSc/MS in CS/IT (2 years - Optional)",
       "Ph.D. in Computer Science (3-5 years - For Research)",
       "Online certifications in specialized domains"
     ],
     skills: [
-      "Programming (Python, Java, C++)",
+      "Python, Java, C++, JavaScript",
       "Data Structures & Algorithms",
       "Web Development",
       "Machine Learning & AI",
       "Database Management",
       "Cloud Computing",
-      "Problem Solving",
+      "Cybersecurity",
       "System Design"
     ],
     careers: [
@@ -76,15 +80,18 @@ export const careerRoadmaps = {
       }
     ],
     insights: {
-      growth: "Computer Engineering is one of the fastest-growing fields with 22% projected growth. High demand for AI/ML engineers, cloud architects, and full-stack developers.",
+      growth: "Computer Science & IT is one of the fastest-growing fields with 22% projected growth. High demand for AI/ML engineers, cloud architects, and full-stack developers.",
       salary: "Entry-level: ₹6-10 LPA | Mid-level: ₹15-25 LPA | Senior: ₹30-50+ LPA",
       trends: "AI/ML, Cloud Computing, Blockchain, IoT, Cybersecurity, and Quantum Computing are emerging trends with massive opportunities."
     }
   },
   "Mechanical Engineering": {
-    description: "Design, build, and innovate mechanical systems that power the world. From automobiles to aerospace, mechanical engineers shape the future of manufacturing.",
+    description: "Design, analysis, and manufacturing of mechanical systems, thermal systems and automation.",
     education: [
-      "B.E./B.Tech in Mechanical Engineering (4 years)",
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.E/B.Tech in Mechanical (4 years)",
       "M.Tech in Thermal/Design/Manufacturing (2 years)",
       "MBA for management roles (2 years - Optional)",
       "Professional certifications (CAD, CAM, FEA)"
@@ -164,9 +171,12 @@ export const careerRoadmaps = {
     }
   },
   "Civil Engineering": {
-    description: "Build the infrastructure that connects communities. Civil engineers design and construct buildings, bridges, roads, and sustainable urban environments.",
+    description: "Planning, designing, constructing and maintaining infrastructure: buildings, roads, bridges and water systems.",
     education: [
-      "B.E./B.Tech in Civil Engineering (4 years)",
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.E/B.Tech in Civil (4 years)",
       "M.Tech in Structural/Transportation/Environmental (2 years)",
       "Professional Engineer (PE) License",
       "Project Management certifications"
@@ -245,10 +255,13 @@ export const careerRoadmaps = {
       trends: "Smart cities, green buildings, sustainable infrastructure, BIM technology, and disaster-resistant construction are emerging trends."
     }
   },
-  "Electrical Engineering": {
-    description: "Power the world with electrical systems and renewable energy. Electrical engineers design circuits, power systems, and innovative electronic solutions.",
+  "Electrical & Electronics Engineering (EEE/ECE)": {
+    description: "Work on power systems, circuits, electronics, communication systems and embedded devices.",
     education: [
-      "B.E./B.Tech in Electrical Engineering (4 years)",
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.Tech/B.E in EEE/ECE (4 years)",
       "M.Tech in Power Systems/Electronics (2 years)",
       "Professional certifications (PLC, SCADA)",
       "Renewable energy specializations"
@@ -322,419 +335,179 @@ export const careerRoadmaps = {
       }
     ],
     insights: {
-      growth: "Electrical Engineering shows 7% growth with high demand in renewable energy, smart grids, and electric vehicle infrastructure.",
+      growth: "Electrical & Electronics Engineering shows 7% growth with high demand in renewable energy, smart grids, and electric vehicle infrastructure.",
       salary: "Entry-level: ₹5-9 LPA | Mid-level: ₹12-22 LPA | Senior: ₹25-45 LPA",
       trends: "Renewable energy, smart grids, electric vehicles, IoT devices, and energy storage systems are key growth areas."
     }
   },
-  "Medical Sciences": {
-    description: "Save lives and advance healthcare through medical practice and research. Medical professionals diagnose, treat, and prevent diseases while improving public health.",
+  "Aerospace & Aeronautical Engineering": {
+    description: "Design and development of aircraft, spacecraft, and related systems.",
     education: [
-      "MBBS (5.5 years including internship)",
-      "MD/MS Specialization (3 years)",
-      "Super-specialization (DM/MCh - 3 years)",
-      "Research degrees (Ph.D. in Medical Sciences)"
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.Tech/B.E in Aerospace (4 years)",
+      "M.Tech in Aerospace (2 years)",
+      "Professional certifications (CFD, Avionics)",
+      "Pilot training for aviation roles"
     ],
     skills: [
-      "Clinical Diagnosis",
-      "Patient Care",
-      "Medical Research",
-      "Surgical Skills",
-      "Communication",
-      "Empathy",
-      "Critical Thinking",
-      "Medical Ethics"
+      "Aerodynamics",
+      "Propulsion Systems",
+      "Structural Analysis",
+      "Avionics",
+      "CFD (Computational Fluid Dynamics)",
+      "Materials Science",
+      "Flight Testing",
+      "Systems Engineering"
     ],
     careers: [
       {
-        title: "General Physician",
-        description: "Primary healthcare provider",
-        salary: "₹8-25 LPA"
-      },
-      {
-        title: "Surgeon",
-        description: "Perform surgical procedures",
-        salary: "₹15-50 LPA"
-      },
-      {
-        title: "Medical Researcher",
-        description: "Conduct clinical research",
-        salary: "₹10-30 LPA"
-      },
-      {
-        title: "Radiologist",
-        description: "Medical imaging specialist",
-        salary: "₹12-40 LPA"
-      },
-      {
-        title: "Cardiologist",
-        description: "Heart disease specialist",
-        salary: "₹20-60 LPA"
-      },
-      {
-        title: "Public Health Officer",
-        description: "Community health management",
-        salary: "₹7-22 LPA"
-      }
-    ],
-    courses: [
-      {
-        name: "Advanced Cardiac Life Support (ACLS)",
-        description: "Emergency cardiac care",
-        duration: "2 days",
-        platform: "American Heart Association"
-      },
-      {
-        name: "Clinical Research Certification",
-        description: "Medical research methodology",
-        duration: "3 months",
-        platform: "Coursera, CCRP"
-      },
-      {
-        name: "Medical Imaging & Radiology",
-        description: "Advanced imaging techniques",
-        duration: "6 months",
-        platform: "edX, Medical Schools"
-      },
-      {
-        name: "Public Health Management",
-        description: "Healthcare administration",
-        duration: "4 months",
-        platform: "Johns Hopkins, Coursera"
-      }
-    ],
-    insights: {
-      growth: "Medical Sciences shows 13% growth with increasing demand for healthcare professionals, especially in specialized fields and telemedicine.",
-      salary: "Entry-level: ₹8-15 LPA | Mid-level: ₹20-40 LPA | Senior: ₹50-100+ LPA",
-      trends: "Telemedicine, AI in diagnostics, personalized medicine, genomics, and preventive healthcare are transforming the medical field."
-    }
-  },
-  "Architecture": {
-    description: "Design beautiful, functional spaces that inspire. Architects blend art, science, and technology to create sustainable buildings and urban environments.",
-    education: [
-      "B.Arch (5 years)",
-      "M.Arch in Specialization (2 years - Optional)",
-      "Council of Architecture (COA) Registration",
-      "Sustainable design certifications"
-    ],
-    skills: [
-      "Architectural Design",
-      "AutoCAD & Revit",
-      "3D Modeling (SketchUp, 3ds Max)",
-      "Building Codes",
-      "Sustainable Design",
-      "Project Management",
-      "Creativity",
-      "Visualization"
-    ],
-    careers: [
-      {
-        title: "Architectural Designer",
-        description: "Create building designs",
-        salary: "₹5-20 LPA"
-      },
-      {
-        title: "Urban Designer",
-        description: "Plan city spaces",
-        salary: "₹6-22 LPA"
-      },
-      {
-        title: "Interior Architect",
-        description: "Design interior spaces",
-        salary: "₹5-18 LPA"
-      },
-      {
-        title: "Landscape Architect",
-        description: "Design outdoor environments",
-        salary: "₹5-19 LPA"
-      },
-      {
-        title: "Sustainable Design Consultant",
-        description: "Green building specialist",
-        salary: "₹7-25 LPA"
-      },
-      {
-        title: "Project Architect",
-        description: "Manage architectural projects",
-        salary: "₹8-28 LPA"
-      }
-    ],
-    courses: [
-      {
-        name: "Advanced Revit & BIM",
-        description: "Building information modeling",
-        duration: "3 months",
-        platform: "Autodesk, Udemy"
-      },
-      {
-        name: "Sustainable Architecture",
-        description: "Green building design",
-        duration: "4 months",
-        platform: "edX, Coursera"
-      },
-      {
-        name: "3D Visualization with V-Ray",
-        description: "Photorealistic rendering",
-        duration: "2 months",
-        platform: "LinkedIn Learning"
-      },
-      {
-        name: "LEED Accreditation",
-        description: "Green building certification",
-        duration: "3 months",
-        platform: "USGBC"
-      }
-    ],
-    insights: {
-      growth: "Architecture shows 8% growth driven by urbanization, sustainable design, and smart building technologies.",
-      salary: "Entry-level: ₹4-8 LPA | Mid-level: ₹10-20 LPA | Senior: ₹25-50 LPA",
-      trends: "Sustainable architecture, smart buildings, parametric design, virtual reality, and adaptive reuse are emerging trends."
-    }
-  },
-  "Pure Sciences": {
-    description: "Explore the fundamental laws of nature through research and discovery. Pure scientists advance knowledge in physics, chemistry, biology, and mathematics.",
-    education: [
-      "B.Sc in Physics/Chemistry/Biology/Mathematics (3 years)",
-      "M.Sc in Specialization (2 years)",
-      "Ph.D. for Research Career (4-6 years)",
-      "Postdoctoral research (2-3 years)"
-    ],
-    skills: [
-      "Research Methodology",
-      "Data Analysis",
-      "Laboratory Techniques",
-      "Scientific Writing",
-      "Critical Thinking",
-      "Mathematics",
-      "Programming (Python, R)",
-      "Instrumentation"
-    ],
-    careers: [
-      {
-        title: "Research Scientist",
-        description: "Conduct scientific research",
-        salary: "₹6-25 LPA"
-      },
-      {
-        title: "Laboratory Manager",
-        description: "Manage research facilities",
-        salary: "₹7-20 LPA"
-      },
-      {
-        title: "Data Scientist",
-        description: "Analyze scientific data",
+        title: "Aerospace Engineer",
+        description: "Design aircraft and spacecraft",
         salary: "₹8-30 LPA"
       },
       {
-        title: "Science Educator",
-        description: "Teaching and academia",
-        salary: "₹5-18 LPA"
+        title: "Flight Test Engineer",
+        description: "Test aircraft performance",
+        salary: "₹10-35 LPA"
       },
       {
-        title: "Pharmaceutical Researcher",
-        description: "Drug development",
+        title: "Propulsion Engineer",
+        description: "Design engines and propulsion systems",
+        salary: "₹9-32 LPA"
+      },
+      {
+        title: "Avionics Engineer",
+        description: "Develop avionics systems",
         salary: "₹8-28 LPA"
       },
       {
-        title: "Environmental Scientist",
-        description: "Study environmental systems",
+        title: "Space Systems Engineer",
+        description: "Work on satellite and space missions",
+        salary: "₹12-40 LPA"
+      },
+      {
+        title: "Aircraft Maintenance Engineer",
+        description: "Maintain and repair aircraft",
         salary: "₹6-22 LPA"
       }
     ],
     courses: [
       {
-        name: "Advanced Research Methodology",
-        description: "Scientific research techniques",
+        name: "Aerodynamics & CFD",
+        description: "Fluid dynamics and simulation",
+        duration: "4 months",
+        platform: "NPTEL, Coursera"
+      },
+      {
+        name: "Aircraft Structures",
+        description: "Design and analysis of aircraft structures",
+        duration: "3 months",
+        platform: "edX, MIT"
+      },
+      {
+        name: "Space Systems Engineering",
+        description: "Satellite and spacecraft design",
+        duration: "6 months",
+        platform: "ISRO, Coursera"
+      },
+      {
+        name: "Avionics & Control Systems",
+        description: "Aircraft electronics and control",
+        duration: "4 months",
+        platform: "Udemy, LinkedIn Learning"
+      }
+    ],
+    insights: {
+      growth: "Aerospace Engineering shows 8% growth with increasing demand in space exploration, defense, and commercial aviation.",
+      salary: "Entry-level: ₹6-12 LPA | Mid-level: ₹15-30 LPA | Senior: ₹35-60 LPA",
+      trends: "Space tourism, unmanned aerial vehicles (UAVs), hypersonic technology, and sustainable aviation are emerging trends."
+    }
+  },
+  "Biomedical / Bioengineering": {
+    description: "Application of engineering principles to healthcare: medical devices, imaging, prosthetics and biomaterials.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCM - Physics, Chemistry, Mathematics) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCM required for engineering)",
+      "B.Tech in Biomedical Engineering (4 years)",
+      "M.Tech in Biomedical (2 years)",
+      "Ph.D. in Biomedical Engineering (3-5 years)",
+      "Clinical engineering certifications"
+    ],
+    skills: [
+      "Biomedical Instrumentation",
+      "Biomechanics",
+      "Medical Imaging",
+      "Biomaterials",
+      "Signal Processing",
+      "Regulatory Compliance",
+      "Clinical Research",
+      "CAD for Medical Devices"
+    ],
+    careers: [
+      {
+        title: "Biomedical Engineer",
+        description: "Design medical devices and systems",
+        salary: "₹6-25 LPA"
+      },
+      {
+        title: "Clinical Engineer",
+        description: "Manage medical equipment in hospitals",
+        salary: "₹7-22 LPA"
+      },
+      {
+        title: "Medical Device Developer",
+        description: "Develop prosthetics and implants",
+        salary: "₹8-30 LPA"
+      },
+      {
+        title: "Biomaterials Scientist",
+        description: "Research and develop biomaterials",
+        salary: "₹9-32 LPA"
+      },
+      {
+        title: "Imaging Engineer",
+        description: "Work on medical imaging systems",
+        salary: "₹7-28 LPA"
+      },
+      {
+        title: "Regulatory Affairs Specialist",
+        description: "Ensure compliance for medical devices",
+        salary: "₹8-26 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Biomedical Signal Processing",
+        description: "Analysis of physiological signals",
         duration: "3 months",
         platform: "Coursera, edX"
       },
       {
-        name: "Data Science for Scientists",
-        description: "Python and R for research",
+        name: "Medical Device Design",
+        description: "Design and prototyping of medical devices",
         duration: "4 months",
-        platform: "DataCamp, Coursera"
+        platform: "Udemy, MIT"
       },
       {
-        name: "Molecular Biology Techniques",
-        description: "Advanced lab methods",
+        name: "Biomaterials & Tissue Engineering",
+        description: "Advanced biomaterials research",
         duration: "6 months",
-        platform: "MIT OpenCourseWare"
+        platform: "NPTEL, Coursera"
       },
       {
-        name: "Scientific Writing & Publishing",
-        description: "Research paper writing",
+        name: "Regulatory Affairs for Medical Devices",
+        description: "FDA and ISO compliance",
         duration: "2 months",
-        platform: "Nature Masterclasses"
+        platform: "Simplilearn, LinkedIn Learning"
       }
     ],
     insights: {
-      growth: "Pure Sciences shows 5% growth with increasing demand in biotechnology, pharmaceuticals, and data science applications.",
-      salary: "Entry-level: ₹5-10 LPA | Mid-level: ₹12-25 LPA | Senior: ₹30-60 LPA",
-      trends: "Biotechnology, nanotechnology, quantum computing, climate science, and computational biology are emerging research areas."
-    }
-  },
-  "Commerce & Business": {
-    description: "Drive business success through finance, management, and entrepreneurship. Commerce professionals manage organizations, analyze markets, and create business strategies.",
-    education: [
-      "B.Com/BBA (3 years)",
-      "MBA in Specialization (2 years)",
-      "CA/CMA/CS Professional Courses",
-      "Industry certifications (CFA, FRM)"
-    ],
-    skills: [
-      "Financial Analysis",
-      "Business Strategy",
-      "Accounting",
-      "Marketing",
-      "Leadership",
-      "Data Analytics",
-      "Communication",
-      "Entrepreneurship"
-    ],
-    careers: [
-      {
-        title: "Financial Analyst",
-        description: "Analyze financial data",
-        salary: "₹6-22 LPA"
-      },
-      {
-        title: "Business Consultant",
-        description: "Strategic business advisory",
-        salary: "₹8-30 LPA"
-      },
-      {
-        title: "Marketing Manager",
-        description: "Lead marketing strategies",
-        salary: "₹7-25 LPA"
-      },
-      {
-        title: "Chartered Accountant",
-        description: "Accounting and taxation",
-        salary: "₹8-35 LPA"
-      },
-      {
-        title: "Investment Banker",
-        description: "Corporate finance",
-        salary: "₹12-50 LPA"
-      },
-      {
-        title: "Entrepreneur",
-        description: "Start and run businesses",
-        salary: "Variable"
-      }
-    ],
-    courses: [
-      {
-        name: "Financial Modeling & Valuation",
-        description: "Corporate finance analysis",
-        duration: "3 months",
-        platform: "Wall Street Prep, Coursera"
-      },
-      {
-        name: "Digital Marketing Certification",
-        description: "Online marketing strategies",
-        duration: "2 months",
-        platform: "Google, HubSpot"
-      },
-      {
-        name: "CFA Level 1",
-        description: "Investment analysis",
-        duration: "6 months",
-        platform: "CFA Institute"
-      },
-      {
-        name: "Business Analytics",
-        description: "Data-driven decision making",
-        duration: "4 months",
-        platform: "Wharton, Coursera"
-      }
-    ],
-    insights: {
-      growth: "Commerce & Business shows 10% growth with high demand in fintech, digital marketing, and business analytics.",
-      salary: "Entry-level: ₹5-12 LPA | Mid-level: ₹15-30 LPA | Senior: ₹35-80+ LPA",
-      trends: "Fintech, e-commerce, digital marketing, business analytics, and sustainable business practices are key growth areas."
-    }
-  },
-  "Arts & Humanities": {
-    description: "Express creativity and understand human culture through art, literature, and social sciences. Arts professionals create, communicate, and inspire.",
-    education: [
-      "B.A. in Arts/Humanities (3 years)",
-      "M.A. in Specialization (2 years)",
-      "Professional courses in specific arts",
-      "Portfolio development"
-    ],
-    skills: [
-      "Creative Thinking",
-      "Communication",
-      "Writing",
-      "Design",
-      "Cultural Understanding",
-      "Research",
-      "Presentation",
-      "Digital Media"
-    ],
-    careers: [
-      {
-        title: "Content Writer",
-        description: "Create written content",
-        salary: "₹4-15 LPA"
-      },
-      {
-        title: "Graphic Designer",
-        description: "Visual design and branding",
-        salary: "₹5-20 LPA"
-      },
-      {
-        title: "Social Media Manager",
-        description: "Manage online presence",
-        salary: "₹5-18 LPA"
-      },
-      {
-        title: "UX/UI Designer",
-        description: "Design user experiences",
-        salary: "₹6-25 LPA"
-      },
-      {
-        title: "Journalist",
-        description: "News reporting and writing",
-        salary: "₹5-22 LPA"
-      },
-      {
-        title: "Art Director",
-        description: "Creative direction",
-        salary: "₹8-30 LPA"
-      }
-    ],
-    courses: [
-      {
-        name: "Advanced Graphic Design",
-        description: "Adobe Creative Suite mastery",
-        duration: "3 months",
-        platform: "Adobe, Skillshare"
-      },
-      {
-        name: "UX Design Specialization",
-        description: "User experience design",
-        duration: "4 months",
-        platform: "Google, Coursera"
-      },
-      {
-        name: "Content Marketing",
-        description: "Strategic content creation",
-        duration: "2 months",
-        platform: "HubSpot, Udemy"
-      },
-      {
-        name: "Digital Illustration",
-        description: "Digital art techniques",
-        duration: "3 months",
-        platform: "Domestika, Skillshare"
-      }
-    ],
-    insights: {
-      growth: "Arts & Humanities shows 11% growth driven by digital media, content creation, and user experience design.",
-      salary: "Entry-level: ₹4-10 LPA | Mid-level: ₹12-25 LPA | Senior: ₹30-60 LPA",
-      trends: "Digital content creation, UX/UI design, social media marketing, video production, and interactive media are booming."
+      growth: "Biomedical Engineering shows 10% growth driven by aging populations, medical technology advancements, and personalized medicine.",
+      salary: "Entry-level: ₹5-10 LPA | Mid-level: ₹12-25 LPA | Senior: ₹30-50 LPA",
+      trends: "Wearable devices, AI in diagnostics, regenerative medicine, telemedicine, and 3D-printed organs are key growth areas."
     }
   }
 };
