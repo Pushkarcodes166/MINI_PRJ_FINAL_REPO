@@ -133,11 +133,11 @@ export default function RoadmapDetails() {
             <aside className="md:col-span-4">
               <div className="p-4 rounded-xl bg-gray-900/50 border border-white/5 mb-4">
                 <h3 className="text-lg font-bold mb-2">Key Skills</h3>
-                <div className="flex flex-wrap gap-2">
+                <ul className="space-y-1">
                   {(details.popular_specializations || details.popular_specializations === '' ? (details.popular_specializations.split ? details.popular_specializations.split(',').slice(0,8) : []) : []).map((s, i) => (
-                    <span key={i} className="px-3 py-1 text-sm rounded-full bg-purple-700/20 border border-purple-700/10">{s}</span>
+                    <li key={i} className="text-sm text-gray-300">• {s.trim()}</li>
                   ))}
-                </div>
+                </ul>
               </div>
 
               <div className="p-4 rounded-xl bg-gradient-to-tr from-green-700/20 to-blue-700/10 border border-white/5">
