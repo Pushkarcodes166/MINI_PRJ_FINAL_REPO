@@ -7,25 +7,25 @@ import { careerRoadmaps } from '../data/careerRoadmaps.js';
 
 const biologyHealthCareers = [
   {
-    id: 'medical_mbbs',
+    id: 'Medical (MBBS/BDS/AYUSH)',
     title: 'Medical (MBBS/BDS/AYUSH)',
     description: 'Clinical practice and medical research; MBBS leads to physician/medical specialist careers; BDS for dentistry; AYUSH for traditional medicine.',
     icon: '🏥'
   },
   {
-    id: 'pharmacy',
+    id: 'Pharmacy',
     title: 'Pharmacy',
     description: 'Pharmaceutical sciences: drug development, manufacturing, clinical trials and regulatory affairs.',
     icon: '💊'
   },
   {
-    id: 'nursing_allied',
+    id: 'Nursing & Allied Health Sciences',
     title: 'Nursing & Allied Health Sciences',
     description: 'Clinical support roles: nursing, physiotherapy, occupational therapy, radiography, lab technology.',
     icon: '👩‍⚕️'
   },
   {
-    id: 'biotechnology',
+    id: 'Biotechnology & Life Sciences',
     title: 'Biotechnology & Life Sciences',
     description: 'Study and application of biological systems for health, agriculture, industry and environment.',
     icon: '🧬'
