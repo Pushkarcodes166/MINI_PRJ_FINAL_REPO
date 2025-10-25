@@ -134,7 +134,7 @@ export default function RoadmapDetails() {
               <div className="p-4 rounded-xl bg-gray-900/50 border border-white/5 mb-4">
                 <h3 className="text-lg font-bold mb-2">Key Skills</h3>
                 <ul className="space-y-1">
-                  {(details.popular_specializations || details.popular_specializations === '' ? (details.popular_specializations.split ? details.popular_specializations.split(',').slice(0,8) : []) : []).map((s, i) => (
+                  {(details.popular_specializations || details.popular_specializations === '' ? (details.popular_specializations.split ? details.popular_specializations.split('|').slice(0,8) : []) : []).map((s, i) => (
                     <li key={i} className="text-sm text-gray-300">• {s.trim()}</li>
                   ))}
                 </ul>

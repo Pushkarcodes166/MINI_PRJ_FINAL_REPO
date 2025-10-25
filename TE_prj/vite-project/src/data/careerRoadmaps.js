@@ -521,16 +521,6 @@ export const careerRoadmaps = {
       "AYUSH programs (5.5 years including internship)",
       "MD/MS/DNB (3 years - Optional specialization)"
     ],
-    skills: [
-      "Clinical Diagnosis",
-      "Patient Care",
-      "Medical Ethics",
-      "Surgical Skills",
-      "Communication",
-      "Emergency Response",
-      "Medical Research",
-      "Healthcare Management"
-    ],
     careers: [
       {
         title: "General Physician",
