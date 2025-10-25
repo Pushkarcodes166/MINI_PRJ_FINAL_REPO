@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import scienceCareers from '../data/science_careers.js';
-import { Search, ChevronDown, ChevronRight, BookOpen, Users, Heart, Microscope, Calculator, Globe, Briefcase } from 'lucide-react';
+import { Search, ChevronDown, ChevronRight, BookOpen, Users, Heart, Microscope, Calculator, Globe, Briefcase, Home } from 'lucide-react';
 // Main headings for clubbing
 const mainFields = [
   {
@@ -40,6 +41,7 @@ const remainingCareers = scienceCareers.filter(c => !clubbedIds.includes(c.id));
 
 
 const CareerFieldsPage = () => {
+  const navigate = useNavigate();
   const [openField, setOpenField] = useState(null);
   const [showPath, setShowPath] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
@@ -67,6 +69,16 @@ const CareerFieldsPage = () => {
       <div className="min-h-screen relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-blue-900/20 to-pink-900/20 animate-gradient" />
         <div className="relative z-10 container mx-auto px-6 py-12">
+          <div className="absolute top-4 right-4">
+            <Button
+              variant="outline"
+              onClick={() => navigate('/student-dashboard')}
+              className="px-6 py-3 text-lg font-semibold border-purple-500 text-purple-300 hover:bg-purple-500/10 rounded-xl transition-all duration-300 flex items-center gap-2"
+            >
+              <Home className="w-5 h-5" />
+              Back to Dashboard
+            </Button>
+          </div>
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

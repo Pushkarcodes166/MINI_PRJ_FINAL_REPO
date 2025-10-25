@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, GraduationCap, Briefcase, Award, Target, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { careerRoadmaps } from '@/data/careerRoadmaps';
 
@@ -16,6 +16,16 @@ export default function RoadmapDetails() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
+
+  const getIcon = (stepIndex) => {
+    const icons = [BookOpen, GraduationCap, Briefcase, Award, Target, CheckCircle];
+    return icons[stepIndex % icons.length];
+  };
+
+  const getStepColor = (stepIndex) => {
+    const colors = ['from-blue-500 to-cyan-500', 'from-green-500 to-emerald-500', 'from-purple-500 to-indigo-500', 'from-pink-500 to-rose-500', 'from-yellow-500 to-orange-500', 'from-teal-500 to-blue-500'];
+    return colors[stepIndex % colors.length];
+  };
 
   useEffect(() => {
     if (!career) return;
@@ -119,7 +129,6 @@ export default function RoadmapDetails() {
             <div className="md:col-span-8">
               <h2 className="text-2xl font-bold mb-4">Roadmap Timeline</h2>
               <div className="relative ml-4">
-                <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-400 to-pink-400 rounded" />
                 <div className="space-y-6 pl-8">
                   {details.roadmap_steps && details.roadmap_steps.length > 0 ? (
                     <>
@@ -132,10 +141,21 @@ export default function RoadmapDetails() {
                           transition={{ duration: 0.5, ease: "easeInOut" }}
                           className="relative"
                         >
-                          <div className="absolute -left-8 top-1 w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center text-purple-600 font-bold">{currentStep + 1}</div>
-                          <div className="p-4 bg-gray-900/60 rounded-lg">
-                            <div className="font-semibold">{details.roadmap_steps[currentStep]}</div>
-                            <div className="text-sm text-gray-300 mt-1">Step {currentStep + 1} of {details.roadmap_steps.length}</div>
+                          <div className={`absolute -left-8 top-1 w-8 h-8 rounded-full bg-gradient-to-r ${getStepColor(currentStep)} shadow-lg flex items-center justify-center text-white font-bold border-2 border-white`}>
+                            {React.createElement(getIcon(currentStep), { className: "w-4 h-4" })}
+                          </div>
+                          <div className="p-6 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                            <div className="flex items-start gap-4">
+                              <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${getStepColor(currentStep)} flex items-center justify-center text-white font-bold shadow-lg`}>
+                                {currentStep + 1}
+                              </div>
+                              <div className="flex-1">
+                                <div className="font-bold text-lg text-white mb-2">{details.roadmap_steps[currentStep]}</div>
+                                <div className="text-sm text-gray-300 bg-black/20 px-3 py-1 rounded-full inline-block">
+                                  Step {currentStep + 1} of {details.roadmap_steps.length}
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </motion.div>
                       </AnimatePresence>
