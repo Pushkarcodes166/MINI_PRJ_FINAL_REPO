@@ -487,6 +487,171 @@ def feedback_aggregate():
 
     return jsonify(aggregates)
 
+# Community & Networking Endpoints
+
+@app.route('/forums', methods=['GET', 'POST'])
+def forums():
+    forums_file = os.path.join(DATA_DIR, 'forums.json')
+
+    if request.method == 'GET':
+        career = request.args.get('career')
+        try:
+            if os.path.exists(forums_file):
+                with open(forums_file, 'r') as f:
+                    forums_data = json.load(f)
+            else:
+                forums_data = {}
+
+            if career:
+                return jsonify(forums_data.get(career, []))
+            else:
+                return jsonify(forums_data)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'POST':
+        data = request.get_json()
+        if not data or 'career' not in data or 'title' not in data or 'content' not in data:
+            return jsonify({'error': 'Career, title, and content required'}), 400
+
+        try:
+            if os.path.exists(forums_file):
+                with open(forums_file, 'r') as f:
+                    forums_data = json.load(f)
+            else:
+                forums_data = {}
+
+            if data['career'] not in forums_data:
+                forums_data[data['career']] = []
+
+            post = {
+                'id': len(forums_data[data['career']]) + 1,
+                'title': data['title'],
+                'content': data['content'],
+                'author': data.get('author', 'Anonymous'),
+                'replies': [],
+                'timestamp': datetime.now().isoformat()
+            }
+
+            forums_data[data['career']].append(post)
+            with open(forums_file, 'w') as f:
+                json.dump(forums_data, f, indent=2)
+
+            return jsonify({'message': 'Post created successfully', 'id': post['id']})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/forums/<int:post_id>/reply', methods=['POST'])
+def forum_reply(post_id):
+    data = request.get_json()
+    if not data or 'career' not in data or 'content' not in data:
+        return jsonify({'error': 'Career and content required'}), 400
+
+    forums_file = os.path.join(DATA_DIR, 'forums.json')
+
+    try:
+        if os.path.exists(forums_file):
+            with open(forums_file, 'r') as f:
+                forums_data = json.load(f)
+        else:
+            return jsonify({'error': 'Forum not found'}), 404
+
+        career_posts = forums_data.get(data['career'], [])
+        for post in career_posts:
+            if post['id'] == post_id:
+                reply = {
+                    'content': data['content'],
+                    'author': data.get('author', 'Anonymous'),
+                    'timestamp': datetime.now().isoformat()
+                }
+                post['replies'].append(reply)
+                break
+        else:
+            return jsonify({'error': 'Post not found'}), 404
+
+        with open(forums_file, 'w') as f:
+            json.dump(forums_data, f, indent=2)
+
+        return jsonify({'message': 'Reply added successfully'})
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/user-content', methods=['GET', 'POST'])
+def user_content():
+    content_file = os.path.join(DATA_DIR, 'user_content.json')
+
+    if request.method == 'GET':
+        content_type = request.args.get('type')
+        try:
+            if os.path.exists(content_file):
+                with open(content_file, 'r') as f:
+                    content_data = json.load(f)
+            else:
+                content_data = []
+
+            if content_type:
+                filtered = [c for c in content_data if c.get('type') == content_type]
+                return jsonify(filtered)
+            else:
+                return jsonify(content_data)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'POST':
+        data = request.get_json()
+        if not data or 'type' not in data or 'title' not in data or 'content' not in data:
+            return jsonify({'error': 'Type, title, and content required'}), 400
+
+        try:
+            if os.path.exists(content_file):
+                with open(content_file, 'r') as f:
+                    content_data = json.load(f)
+            else:
+                content_data = []
+
+            content = {
+                'id': len(content_data) + 1,
+                'type': data['type'],
+                'title': data['title'],
+                'content': data['content'],
+                'author': data.get('author', 'Anonymous'),
+                'tags': data.get('tags', []),
+                'timestamp': datetime.now().isoformat()
+            }
+
+            content_data.append(content)
+            with open(content_file, 'w') as f:
+                json.dump(content_data, f, indent=2)
+
+            return jsonify({'message': 'Content submitted successfully', 'id': content['id']})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/mentors', methods=['GET'])
+def mentors():
+    mentors_file = os.path.join(DATA_DIR, 'mentors.json')
+
+    try:
+        if os.path.exists(mentors_file):
+            with open(mentors_file, 'r') as f:
+                mentors_data = json.load(f)
+        else:
+            # Default mentors data
+            mentors_data = [
+                {'id': 1, 'name': 'John Doe', 'career': 'Software Engineer', 'experience': '10 years', 'availability': 'Weekends'},
+                {'id': 2, 'name': 'Jane Smith', 'career': 'Data Scientist', 'experience': '8 years', 'availability': 'Evenings'}
+            ]
+            with open(mentors_file, 'w') as f:
+                json.dump(mentors_data, f, indent=2)
+
+        return jsonify(mentors_data)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     # Print accuracy

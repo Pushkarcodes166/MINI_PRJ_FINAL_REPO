@@ -24,6 +24,19 @@
 - [ ] UI Updates: Add international filters to job/opportunity pages
 - [ ] UI Updates: Update roadmap displays to show global options
 
+## Community & Networking Features
+- [x] Create MentorshipPage.jsx: Page to list mentors, enable messaging and video calls
+- [x] Remove video call option from MentorshipPage.jsx, keep only chat option
+- [x] Add back to home buttons to MentorshipPage.jsx and DiscussionForumsPage.jsx
+- [x] Add back to home button to UserContentPage.jsx
+- [x] Create DiscussionForumsPage.jsx: Q&A forums per career field with moderation
+- [x] Complete DiscussionForumsPage.jsx: Make new post form toggleable and hide after submission
+- [x] Create UserContentPage.jsx: Submit and display success stories, tips, custom roadmaps
+- [x] Update App.jsx: Add routes for new community pages
+- [x] Update StudentDashboard.jsx: Add navigation links to community features
+- [x] Update backend/app.py: Add endpoints for forums, user content, mentorship connections
+- [ ] Integrate Firebase for real-time messaging in mentorship platform
+
 ## Followup Steps
 - [ ] Test admin CRUD operations
 - [ ] Verify international data displays correctly

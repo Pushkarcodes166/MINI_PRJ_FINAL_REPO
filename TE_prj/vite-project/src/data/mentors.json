@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "career": "Software Engineer",
+    "experience": "10 years",
+    "availability": "Weekends"
+  },
+  {
+    "id": 2,
+    "name": "Jane Smith",
+    "career": "Data Scientist",
+    "experience": "8 years",
+    "availability": "Evenings"
+  }
+]

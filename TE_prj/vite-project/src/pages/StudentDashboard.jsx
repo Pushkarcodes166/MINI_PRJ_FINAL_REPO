@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
-import { Brain, Target, BookOpen, TrendingUp, LogOut, User, Award } from 'lucide-react';
+import { Brain, Target, BookOpen, TrendingUp, LogOut, User, Award, Users, MessageSquare, FileText } from 'lucide-react';
 import scienceCareers from '../data/science_careers.js';
 import ProfileEditModal from '@/components/ProfileEditModal';
 
@@ -217,6 +217,34 @@ const StudentDashboard = () => {
             >
               <Target className="w-5 h-5 mr-2" />
               Opportunities
+            </Button>
+          </div>
+
+          {/* Community & Networking Features */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-lg px-6 py-4"
+              onClick={() => navigate('/mentorship')}
+            >
+              <Users className="w-5 h-5 mr-2" />
+              Mentorship
+            </Button>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-lg px-6 py-4"
+              onClick={() => navigate('/discussion-forums')}
+            >
+              <MessageSquare className="w-5 h-5 mr-2" />
+              Discussion Forums
+            </Button>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-lg px-6 py-4"
+              onClick={() => navigate('/user-content')}
+            >
+              <FileText className="w-5 h-5 mr-2" />
+              User Content
             </Button>
           </div>
 
