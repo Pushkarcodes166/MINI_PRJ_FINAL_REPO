@@ -16,7 +16,7 @@ CORS(app)
 csv_path = r'c:/Users/Eesha Potnis/Desktop/f1/TE_prj/vite-project/src/data/science_careers.csv'
 import csv
 clean_rows = []
-with open(csv_path, encoding='utf-8') as f:
+with open(csv_path, encoding='utf-8-sig') as f:
     reader = csv.reader(f)
     header = next(reader)
     expected_len = len(header)
@@ -648,6 +648,67 @@ def mentors():
                 json.dump(mentors_data, f, indent=2)
 
         return jsonify(mentors_data)
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+def enhance_resume_section(text, section_type):
+    """Mock AI enhancement for resume sections"""
+    if not text or text.strip() == '':
+        return text
+
+    enhancements = {
+        'summary': [
+            lambda t: t.replace('I am', 'Dynamic professional with'),
+            lambda t: t.replace('I have', 'Possess extensive experience in'),
+            lambda t: t.replace('I work', 'Specialize in'),
+            lambda t: '. ' + t[0].lower() + t[1:] if t and t[0].islower() else t,
+        ],
+        'experience': [
+            lambda t: t.replace('I did', 'Led'),
+            lambda t: t.replace('I worked', 'Contributed to'),
+            lambda t: t.replace('I helped', 'Collaborated on'),
+            lambda t: t.replace('I was responsible', 'Managed'),
+        ],
+        'skills': [
+            lambda t: ', '.join([s.strip().capitalize() for s in t.split(',')]),
+            lambda t: t.replace('good at', 'proficient in'),
+            lambda t: t.replace('know', 'expertise in'),
+        ],
+        'education': [
+            lambda t: t.replace('studied', 'pursued degree in'),
+            lambda t: t.replace('graduated', 'completed'),
+        ],
+        'certifications': [
+            lambda t: ', '.join([c.strip().capitalize() for c in t.split(',')]),
+        ]
+    }
+
+    enhanced = text
+    for enhance_func in enhancements.get(section_type, []):
+        enhanced = enhance_func(enhanced)
+
+    # Add professional phrases
+    if section_type == 'summary' and len(enhanced.split()) < 50:
+        enhanced += " Committed to delivering high-quality results and continuous professional development."
+
+    return enhanced.strip()
+
+@app.route('/enhance-resume', methods=['POST'])
+def enhance_resume():
+    data = request.get_json()
+    if not data:
+        return jsonify({'error': 'No data provided'}), 400
+
+    try:
+        enhanced_data = {}
+        for section, content in data.items():
+            if section in ['summary', 'experience', 'skills', 'education', 'certifications']:
+                enhanced_data[section] = enhance_resume_section(content, section)
+            else:
+                enhanced_data[section] = content
+
+        return jsonify(enhanced_data)
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

@@ -1,6 +1,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { careerRoadmaps } from '@/data/careerRoadmaps';
 
 export default function RoadmapDetails() {
@@ -12,6 +15,7 @@ export default function RoadmapDetails() {
   const [details, setDetails] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
     if (!career) return;
@@ -56,8 +60,30 @@ export default function RoadmapDetails() {
         setLoading(false);
       })
       .catch(() => {
-        setError('Failed to load roadmap details.');
-        setLoading(false);
+        // try fallback to local data
+        const fallbackKey = Object.keys(careerRoadmaps).find(k => k.toLowerCase() === career.toLowerCase() || k.toLowerCase().includes(career.toLowerCase()) || career.toLowerCase().includes(k.toLowerCase()));
+        if (fallbackKey) {
+          const local = careerRoadmaps[fallbackKey];
+          const detailsFromLocal = {
+            title: fallbackKey,
+            description: local.description || '',
+            eligibility: local.education ? local.education.join('; ') : '',
+            recommended_12th_subjects: local.education ? local.education.join('|') : '',
+            entrance_exams: '',
+            roadmap_steps: local.education || [],
+            undergraduate_options: local.courses ? local.courses.map(c => c.name).join(', ') : '',
+            postgraduate_options: '',
+            popular_specializations: local.skills ? local.skills.join(', ') : '',
+            possible_career_paths: local.careers ? local.careers.map(c => c.title).join(', ') : '',
+            typical_timeline: '',
+            notes: ''
+          };
+          setDetails(detailsFromLocal);
+          setLoading(false);
+        } else {
+          setError('Failed to load roadmap details.');
+          setLoading(false);
+        }
       });
   }, [career]);
 
@@ -95,15 +121,49 @@ export default function RoadmapDetails() {
               <div className="relative ml-4">
                 <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-purple-400 to-pink-400 rounded" />
                 <div className="space-y-6 pl-8">
-                  {details.roadmap_steps && details.roadmap_steps.length > 0 ? details.roadmap_steps.map((step, idx) => (
-                    <div key={idx} className="relative">
-                      <div className="absolute -left-8 top-1 w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center text-purple-600 font-bold">{idx+1}</div>
-                      <div className="p-4 bg-gray-900/60 rounded-lg">
-                        <div className="font-semibold">{step}</div>
-                        <div className="text-sm text-gray-300 mt-1">{/* optional short description could go here */}</div>
+                  {details.roadmap_steps && details.roadmap_steps.length > 0 ? (
+                    <>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={currentStep}
+                          initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                          transition={{ duration: 0.5, ease: "easeInOut" }}
+                          className="relative"
+                        >
+                          <div className="absolute -left-8 top-1 w-6 h-6 rounded-full bg-white shadow-md flex items-center justify-center text-purple-600 font-bold">{currentStep + 1}</div>
+                          <div className="p-4 bg-gray-900/60 rounded-lg">
+                            <div className="font-semibold">{details.roadmap_steps[currentStep]}</div>
+                            <div className="text-sm text-gray-300 mt-1">Step {currentStep + 1} of {details.roadmap_steps.length}</div>
+                          </div>
+                        </motion.div>
+                      </AnimatePresence>
+                      <div className="flex justify-between items-center mt-6">
+                        <Button
+                          variant="outline"
+                          onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+                          disabled={currentStep === 0}
+                          className="flex items-center gap-2 bg-gray-800/50 border-gray-600 hover:bg-gray-700/50"
+                        >
+                          <ChevronLeft className="w-4 h-4" />
+                          Previous
+                        </Button>
+                        <div className="text-sm text-gray-400">
+                          {currentStep + 1} / {details.roadmap_steps.length}
+                        </div>
+                        <Button
+                          variant="outline"
+                          onClick={() => setCurrentStep(Math.min(details.roadmap_steps.length - 1, currentStep + 1))}
+                          disabled={currentStep === details.roadmap_steps.length - 1}
+                          className="flex items-center gap-2 bg-gray-800/50 border-gray-600 hover:bg-gray-700/50"
+                        >
+                          Next
+                          <ChevronRight className="w-4 h-4" />
+                        </Button>
                       </div>
-                    </div>
-                  )) : (
+                    </>
+                  ) : (
                     <div className="text-gray-400">No structured steps available.</div>
                   )}
                 </div>

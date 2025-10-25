@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { BookOpen, FileText, User, Mail, Phone, MapPin, GraduationCap, Briefcase, Award, ArrowLeft, Download } from 'lucide-react';
+import { BookOpen, FileText, User, Mail, Phone, MapPin, GraduationCap, Briefcase, Award, ArrowLeft, Download, Sparkles } from 'lucide-react';
 import jsPDF from 'jspdf';
 
 const ResumeBuilderPage = () => {
@@ -22,6 +22,7 @@ const ResumeBuilderPage = () => {
     skills: '',
     certifications: ''
   });
+  const [isEnhancing, setIsEnhancing] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -31,39 +32,67 @@ const ResumeBuilderPage = () => {
     }));
   };
 
+  const enhanceResume = async () => {
+    setIsEnhancing(true);
+    try {
+      const response = await fetch('http://localhost:5000/enhance-resume', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const enhancedData = await response.json();
+        setFormData(enhancedData);
+      } else {
+        console.error('Failed to enhance resume');
+      }
+    } catch (error) {
+      console.error('Error enhancing resume:', error);
+    } finally {
+      setIsEnhancing(false);
+    }
+  };
+
   const generatePDF = () => {
     const doc = new jsPDF();
 
     // Set font
     doc.setFont('helvetica');
 
-    // Title
-    doc.setFontSize(20);
-    doc.text('Resume', 105, 20, { align: 'center' });
+    // Header with name
+    doc.setFontSize(24);
+    doc.setFont('helvetica', 'bold');
+    doc.text(formData.fullName || 'Your Name', 105, 30, { align: 'center' });
 
-    let yPosition = 40;
+    // Contact information
+    doc.setFontSize(10);
+    doc.setFont('helvetica', 'normal');
+    let contactY = 45;
+    if (formData.email) {
+      doc.text(formData.email, 105, contactY, { align: 'center' });
+      contactY += 5;
+    }
+    if (formData.phone) {
+      doc.text(formData.phone, 105, contactY, { align: 'center' });
+      contactY += 5;
+    }
+    if (formData.address) {
+      doc.text(formData.address, 105, contactY, { align: 'center' });
+    }
 
-    // Personal Information
-    doc.setFontSize(16);
-    doc.text('Personal Information', 20, yPosition);
-    yPosition += 10;
+    let yPosition = 70;
 
-    doc.setFontSize(12);
-    doc.text(`Name: ${formData.fullName}`, 20, yPosition);
-    yPosition += 10;
-    doc.text(`Email: ${formData.email}`, 20, yPosition);
-    yPosition += 10;
-    doc.text(`Phone: ${formData.phone}`, 20, yPosition);
-    yPosition += 10;
-    doc.text(`Address: ${formData.address}`, 20, yPosition);
-    yPosition += 20;
-
-    // Summary
+    // Professional Summary
     if (formData.summary) {
-      doc.setFontSize(16);
-      doc.text('Professional Summary', 20, yPosition);
-      yPosition += 10;
-      doc.setFontSize(12);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('PROFESSIONAL SUMMARY', 20, yPosition);
+      yPosition += 8;
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
       const summaryLines = doc.splitTextToSize(formData.summary, 170);
       doc.text(summaryLines, 20, yPosition);
       yPosition += summaryLines.length * 5 + 10;
@@ -71,21 +100,25 @@ const ResumeBuilderPage = () => {
 
     // Education
     if (formData.education) {
-      doc.setFontSize(16);
-      doc.text('Education', 20, yPosition);
-      yPosition += 10;
-      doc.setFontSize(12);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('EDUCATION', 20, yPosition);
+      yPosition += 8;
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
       const educationLines = doc.splitTextToSize(formData.education, 170);
       doc.text(educationLines, 20, yPosition);
       yPosition += educationLines.length * 5 + 10;
     }
 
-    // Experience
+    // Work Experience
     if (formData.experience) {
-      doc.setFontSize(16);
-      doc.text('Work Experience', 20, yPosition);
-      yPosition += 10;
-      doc.setFontSize(12);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('WORK EXPERIENCE', 20, yPosition);
+      yPosition += 8;
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
       const experienceLines = doc.splitTextToSize(formData.experience, 170);
       doc.text(experienceLines, 20, yPosition);
       yPosition += experienceLines.length * 5 + 10;
@@ -93,10 +126,12 @@ const ResumeBuilderPage = () => {
 
     // Skills
     if (formData.skills) {
-      doc.setFontSize(16);
-      doc.text('Skills', 20, yPosition);
-      yPosition += 10;
-      doc.setFontSize(12);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('SKILLS', 20, yPosition);
+      yPosition += 8;
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
       const skillsLines = doc.splitTextToSize(formData.skills, 170);
       doc.text(skillsLines, 20, yPosition);
       yPosition += skillsLines.length * 5 + 10;
@@ -104,16 +139,18 @@ const ResumeBuilderPage = () => {
 
     // Certifications
     if (formData.certifications) {
-      doc.setFontSize(16);
-      doc.text('Certifications', 20, yPosition);
-      yPosition += 10;
-      doc.setFontSize(12);
+      doc.setFontSize(14);
+      doc.setFont('helvetica', 'bold');
+      doc.text('CERTIFICATIONS', 20, yPosition);
+      yPosition += 8;
+      doc.setFontSize(10);
+      doc.setFont('helvetica', 'normal');
       const certLines = doc.splitTextToSize(formData.certifications, 170);
       doc.text(certLines, 20, yPosition);
     }
 
     // Save the PDF
-    doc.save(`${formData.fullName}_resume.pdf`);
+    doc.save(`${formData.fullName || 'resume'}_resume.pdf`);
   };
 
   return (
@@ -342,13 +379,23 @@ const ResumeBuilderPage = () => {
                   />
                 </motion.div>
 
-                {/* Generate PDF Button */}
+                {/* Enhance with AI Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
-                  className="pt-6"
+                  className="pt-6 space-y-4"
                 >
+                  <Button
+                    type="button"
+                    onClick={enhanceResume}
+                    disabled={isEnhancing}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 text-lg rounded-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 disabled:opacity-50"
+                  >
+                    <Sparkles className="w-5 h-5" />
+                    {isEnhancing ? 'Enhancing...' : 'Enhance with AI'}
+                  </Button>
+
                   <Button
                     type="button"
                     onClick={generatePDF}
