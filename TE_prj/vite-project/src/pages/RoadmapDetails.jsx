@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, BookOpen, GraduationCap, Briefcase, Award, Target, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, BookOpen, GraduationCap, Briefcase, Award, Target, CheckCircle, List } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { careerRoadmaps } from '@/data/careerRoadmaps';
 
@@ -16,6 +16,7 @@ export default function RoadmapDetails() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const getIcon = (stepIndex) => {
     const icons = [BookOpen, GraduationCap, Briefcase, Award, Target, CheckCircle];
@@ -127,9 +128,51 @@ export default function RoadmapDetails() {
 
           <div className="mt-8 grid md:grid-cols-12 gap-6">
             <div className="md:col-span-8">
-              <h2 className="text-2xl font-bold mb-4">Roadmap Timeline</h2>
-              <div className="relative ml-4">
-                <div className="space-y-6 pl-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold">Roadmap Timeline</h2>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowSidebar(!showSidebar)}
+                  className="flex items-center gap-2 bg-gray-800/50 border-gray-600 hover:bg-gray-700/50"
+                >
+                  <List className="w-4 h-4" />
+                  {showSidebar ? 'Hide' : 'Show'} All Steps
+                </Button>
+              </div>
+              <div className="relative flex">
+                {/* Progress Line */}
+                <div className="relative w-1 bg-gray-600 rounded-full mr-8">
+                  <motion.div
+                    className="absolute top-0 left-0 w-full bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
+                    initial={{ height: 0 }}
+                    animate={{ height: `${((currentStep + 1) / details.roadmap_steps.length) * 100}%` }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  />
+                  {/* Milestone Dots */}
+                  {details.roadmap_steps.map((_, index) => (
+                    <motion.div
+                      key={index}
+                      className={`absolute w-6 h-6 rounded-full border-2 shadow-lg cursor-pointer transition-all duration-300 ${
+                        index <= currentStep ? `bg-gradient-to-r ${getStepColor(index)} border-white` : 'bg-gray-500 border-gray-400'
+                      }`}
+                      style={{ top: `${(index / (details.roadmap_steps.length - 1)) * 100}%`, left: '50%', transform: 'translateX(-50%)' }}
+                      whileHover={{
+                        borderColor: index <= currentStep ? '#a855f7' : '#9ca3af',
+                        boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)',
+                        transition: { duration: 0.2 }
+                      }}
+                      onClick={() => setCurrentStep(index)}
+                    >
+                      {index <= currentStep && (
+                        <div className="w-full h-full flex items-center justify-center text-white text-xs font-bold">
+                          {React.createElement(getIcon(index), { className: "w-4 h-4" })}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
+                {/* Current Step Display */}
+                <div className="flex-1">
                   {details.roadmap_steps && details.roadmap_steps.length > 0 ? (
                     <>
                       <AnimatePresence mode="wait">
@@ -141,9 +184,6 @@ export default function RoadmapDetails() {
                           transition={{ duration: 0.5, ease: "easeInOut" }}
                           className="relative"
                         >
-                          <div className={`absolute -left-8 top-1 w-8 h-8 rounded-full bg-gradient-to-r ${getStepColor(currentStep)} shadow-lg flex items-center justify-center text-white font-bold border-2 border-white`}>
-                            {React.createElement(getIcon(currentStep), { className: "w-4 h-4" })}
-                          </div>
                           <div className="p-6 bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-xl border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300">
                             <div className="flex items-start gap-4">
                               <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${getStepColor(currentStep)} flex items-center justify-center text-white font-bold shadow-lg`}>
@@ -187,6 +227,35 @@ export default function RoadmapDetails() {
                     <div className="text-gray-400">No structured steps available.</div>
                   )}
                 </div>
+                {/* Mini-Preview Sidebar */}
+                {showSidebar && (
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    className="ml-8 w-80 bg-gray-900/50 rounded-xl p-4 border border-white/5"
+                  >
+                    <h3 className="text-lg font-bold mb-4">All Steps</h3>
+                    <div className="space-y-2 max-h-96 overflow-y-auto">
+                      {details.roadmap_steps.map((step, index) => (
+                        <div
+                          key={index}
+                          className={`p-3 rounded-lg cursor-pointer transition-all duration-300 ${
+                            index === currentStep ? 'bg-purple-600/50 border border-purple-400' : 'bg-gray-800/30 hover:bg-gray-700/50'
+                          }`}
+                          onClick={() => setCurrentStep(index)}
+                        >
+                          <div className="flex items-center gap-2">
+                            <div className={`w-6 h-6 rounded-full bg-gradient-to-r ${getStepColor(index)} flex items-center justify-center text-white text-xs font-bold flex-shrink-0`}>
+                              {index + 1}
+                            </div>
+                            <div className="text-sm font-medium break-words">{step}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
               </div>
 
               <h2 className="text-2xl font-bold mt-8 mb-4">Recommended Courses & Certifications</h2>
