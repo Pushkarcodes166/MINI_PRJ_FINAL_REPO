@@ -840,5 +840,86 @@ export const careerRoadmaps = {
       salary: "Entry-level: ₹4-7 LPA | Mid-level: ₹10-18 LPA | Senior: ₹20-35 LPA",
       trends: "CRISPR technology, synthetic biology, personalized medicine, and agricultural biotech are key trends."
     }
+  },
+  "Medical (MBBS/BDS/AYUSH)": {
+    description: "Medical professionals in various specialties, including doctors, dentists, and alternative medicine practitioners.",
+    education: [
+      "Complete 10th Standard",
+      "Choose Science Stream (PCB - Physics, Chemistry, Biology) in 11th and 12th",
+      "Complete 12th Standard with good percentage (minimum 50% in PCB required for medical courses)",
+      "MBBS (5.5 years including internship)",
+      "BDS (5 years)",
+      "AYUSH programs (5.5 years including internship)",
+      "MD/MS/DNB (3 years - Optional specialization)"
+    ],
+    skills: [
+      "General Medicine",
+      "Surgery",
+      "Pediatrics",
+      "Orthopedics"
+    ],
+    careers: [
+      {
+        title: "General Physician",
+        description: "Primary healthcare provider",
+        salary: "₹5-15 LPA"
+      },
+      {
+        title: "Surgeon",
+        description: "Surgical procedures and operations",
+        salary: "₹10-30 LPA"
+      },
+      {
+        title: "Pediatrician",
+        description: "Child healthcare specialist",
+        salary: "₹6-20 LPA"
+      },
+      {
+        title: "Orthopedic Surgeon",
+        description: "Bone and joint specialist",
+        salary: "₹12-35 LPA"
+      },
+      {
+        title: "Cardiologist",
+        description: "Heart and cardiovascular specialist",
+        salary: "₹15-40 LPA"
+      },
+      {
+        title: "Dentist",
+        description: "Oral health and dental care",
+        salary: "₹4-12 LPA"
+      }
+    ],
+    courses: [
+      {
+        name: "Anatomy and Physiology",
+        description: "Human body structure and function",
+        duration: "6 months",
+        platform: "Online Platforms"
+      },
+      {
+        name: "Clinical Medicine",
+        description: "Diagnosis and treatment techniques",
+        duration: "6 months",
+        platform: "Coursera, edX"
+      },
+      {
+        name: "Surgical Skills",
+        description: "Basic surgical procedures",
+        duration: "4 months",
+        platform: "Udemy, Simplilearn"
+      },
+      {
+        name: "Medical Ethics",
+        description: "Ethical practices in medicine",
+        duration: "3 months",
+        platform: "Online Platforms"
+      }
+    ],
+    insights: {
+      growth: "Medical field shows 18% growth with increasing healthcare needs and technological advancements.",
+      salary: "Entry-level: ₹4-8 LPA | Mid-level: ₹10-20 LPA | Senior: ₹25-50 LPA",
+      trends: "Telemedicine, AI in diagnostics, personalized medicine, and preventive healthcare are key trends."
+    }
   }
 };
