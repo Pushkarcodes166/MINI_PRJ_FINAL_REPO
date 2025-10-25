@@ -14,6 +14,9 @@ import ProjectDocumentation from '@/pages/ProjectDocumentation';
 import CareerFieldsPage from '@/pages/CareerFieldsPage';
 import EngineeringPage from '@/pages/EngineeringPage';
 import BiologyHealthPage from '@/pages/BiologyHealthPage';
+import JobBoardPage from '@/pages/JobBoardPage';
+import ResumeBuilderPage from '@/pages/ResumeBuilderPage';
+import OpportunitiesPage from '@/pages/OpportunitiesPage';
 
 function App() {
   return (
@@ -33,6 +36,9 @@ function App() {
           <Route path="/career-fields" element={<CareerFieldsPage />} />
           <Route path="/careers/engineering" element={<EngineeringPage />} />
           <Route path="/careers/biology-health" element={<BiologyHealthPage />} />
+          <Route path="/job-board" element={<JobBoardPage />} />
+          <Route path="/resume-builder" element={<ResumeBuilderPage />} />
+          <Route path="/opportunities" element={<OpportunitiesPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Toaster />

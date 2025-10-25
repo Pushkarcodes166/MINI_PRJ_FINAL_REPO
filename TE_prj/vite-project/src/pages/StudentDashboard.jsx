@@ -192,6 +192,34 @@ const StudentDashboard = () => {
             </motion.div>
           </div>
 
+          {/* New Features Buttons */}
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-6 py-4"
+              onClick={() => navigate('/job-board')}
+            >
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Job Board
+            </Button>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-lg px-6 py-4"
+              onClick={() => navigate('/resume-builder')}
+            >
+              <BookOpen className="w-5 h-5 mr-2" />
+              Resume Builder
+            </Button>
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-lg px-6 py-4"
+              onClick={() => navigate('/opportunities')}
+            >
+              <Target className="w-5 h-5 mr-2" />
+              Opportunities
+            </Button>
+          </div>
+
           {/* Explore Career Paths Button */}
           <div className="flex justify-center mb-12">
             <Button

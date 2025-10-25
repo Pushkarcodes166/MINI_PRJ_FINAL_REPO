@@ -25,6 +25,7 @@
     "clsx": "^2.0.0",
     "firebase": "^12.3.0",
     "framer-motion": "^10.16.4",
+    "jspdf": "^3.0.3",
     "lucide-react": "^0.285.0",
     "machinelearn": "^2.1.5",
     "react": "^18.2.0",

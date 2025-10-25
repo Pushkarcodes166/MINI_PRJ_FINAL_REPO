@@ -1,0 +1,72 @@
+export const opportunities = [
+  {
+    id: 1,
+    title: "Software Development Internship",
+    company: "TechCorp",
+    location: "Bangalore, India",
+    type: "Internship",
+    duration: "6 months",
+    stipend: "₹25,000/month",
+    description: "Work on real projects with our development team.",
+    requirements: ["React", "Node.js", "JavaScript"],
+    careerField: "Engineering",
+    postedDate: "2023-10-01",
+    applicationDeadline: "2023-10-31"
+  },
+  {
+    id: 2,
+    title: "Data Science Training Program",
+    company: "DataTech Solutions",
+    location: "Mumbai, India",
+    type: "Training",
+    duration: "3 months",
+    stipend: "₹20,000/month",
+    description: "Intensive training in data science and machine learning.",
+    requirements: ["Python", "Statistics", "Basic Programming"],
+    careerField: "Engineering",
+    postedDate: "2023-10-05",
+    applicationDeadline: "2023-11-05"
+  },
+  {
+    id: 3,
+    title: "Research Assistant Internship",
+    company: "BioMed Labs",
+    location: "Delhi, India",
+    type: "Internship",
+    duration: "4 months",
+    stipend: "₹15,000/month",
+    description: "Assist in biomedical research projects.",
+    requirements: ["Biology", "Lab Skills", "Research Interest"],
+    careerField: "Biology & Health",
+    postedDate: "2023-10-03",
+    applicationDeadline: "2023-11-03"
+  },
+  {
+    id: 4,
+    title: "Environmental Conservation Workshop",
+    company: "GreenEarth Institute",
+    location: "Chennai, India",
+    type: "Workshop",
+    duration: "2 weeks",
+    stipend: "₹10,000",
+    description: "Hands-on workshop on environmental conservation techniques.",
+    requirements: ["Environmental Interest", "Basic Science Knowledge"],
+    careerField: "Biology & Health",
+    postedDate: "2023-10-07",
+    applicationDeadline: "2023-10-21"
+  },
+  {
+    id: 5,
+    title: "Digital Marketing Bootcamp",
+    company: "BrandBoost Agency",
+    location: "Pune, India",
+    type: "Bootcamp",
+    duration: "1 month",
+    stipend: "₹12,000",
+    description: "Learn digital marketing strategies and tools.",
+    requirements: ["Marketing Interest", "Basic Computer Skills"],
+    careerField: "Business & Management",
+    postedDate: "2023-10-02",
+    applicationDeadline: "2023-11-02"
+  }
+];
