@@ -6,6 +6,8 @@ from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, r
 import numpy as np
 import difflib
 import os
+import json
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -136,6 +138,354 @@ def metrics():
         'metrics': m,
         'tree': tree_rules
     })
+
+
+# Data storage for admin-managed content (in production, use a database)
+DATA_DIR = os.path.join(os.path.dirname(__file__), '..', 'src', 'data')
+FEEDBACK_FILE = os.path.join(DATA_DIR, 'feedback.json')
+
+def load_feedback():
+    if os.path.exists(FEEDBACK_FILE):
+        with open(FEEDBACK_FILE, 'r') as f:
+            return json.load(f)
+    return {}
+
+def save_feedback(feedback_data):
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(FEEDBACK_FILE, 'w') as f:
+        json.dump(feedback_data, f, indent=2)
+
+# Admin authentication (simple for demo - in production use proper auth)
+def check_admin_auth():
+    auth_header = request.headers.get('Authorization')
+    if not auth_header or not auth_header.startswith('Bearer '):
+        return False
+    token = auth_header.split(' ')[1]
+    # Simple token check - in production use JWT or proper auth
+    return token == 'admin-token-123'
+
+@app.route('/admin/roadmaps', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def admin_roadmaps():
+    if not check_admin_auth():
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    if request.method == 'GET':
+        # Return current roadmaps data
+        try:
+            with open(os.path.join(DATA_DIR, 'careerRoadmaps.js'), 'r') as f:
+                content = f.read()
+                # Extract the JSON part (remove export const ...)
+                start = content.find('{')
+                end = content.rfind('}') + 1
+                roadmaps = json.loads(content[start:end])
+                return jsonify(roadmaps)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method in ['POST', 'PUT']:
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+
+        try:
+            # Load existing roadmaps
+            with open(os.path.join(DATA_DIR, 'careerRoadmaps.js'), 'r') as f:
+                content = f.read()
+                start = content.find('{')
+                end = content.rfind('}') + 1
+                roadmaps = json.loads(content[start:end])
+
+            # Update or add roadmap
+            key = data.get('key')
+            if not key:
+                return jsonify({'error': 'Roadmap key required'}), 400
+
+            roadmaps[key] = data['data']
+
+            # Save back
+            updated_content = f"export const careerRoadmaps = {json.dumps(roadmaps, indent=2)};"
+            with open(os.path.join(DATA_DIR, 'careerRoadmaps.js'), 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Roadmap updated successfully'})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'DELETE':
+        key = request.args.get('key')
+        if not key:
+            return jsonify({'error': 'Roadmap key required'}), 400
+
+        try:
+            with open(os.path.join(DATA_DIR, 'careerRoadmaps.js'), 'r') as f:
+                content = f.read()
+                start = content.find('{')
+                end = content.rfind('}') + 1
+                roadmaps = json.loads(content[start:end])
+
+            if key in roadmaps:
+                del roadmaps[key]
+
+                updated_content = f"export const careerRoadmaps = {json.dumps(roadmaps, indent=2)};"
+                with open(os.path.join(DATA_DIR, 'careerRoadmaps.js'), 'w') as f:
+                    f.write(updated_content)
+
+                return jsonify({'message': 'Roadmap deleted successfully'})
+            else:
+                return jsonify({'error': 'Roadmap not found'}), 404
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/admin/jobs', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def admin_jobs():
+    if not check_admin_auth():
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    jobs_file = os.path.join(DATA_DIR, 'jobs.js')
+
+    if request.method == 'GET':
+        try:
+            with open(jobs_file, 'r') as f:
+                content = f.read()
+                # Extract array part
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                jobs = json.loads(content[start:end])
+                return jsonify(jobs)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'POST':
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+
+        try:
+            with open(jobs_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                jobs = json.loads(content[start:end])
+
+            # Add new job with ID
+            data['id'] = max([j.get('id', 0) for j in jobs] + [0]) + 1
+            jobs.append(data)
+
+            updated_content = f"export const jobs = {json.dumps(jobs, indent=2)};"
+            with open(jobs_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Job added successfully', 'id': data['id']})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'PUT':
+        data = request.get_json()
+        if not data or 'id' not in data:
+            return jsonify({'error': 'Job ID required'}), 400
+
+        try:
+            with open(jobs_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                jobs = json.loads(content[start:end])
+
+            # Find and update job
+            for i, job in enumerate(jobs):
+                if job.get('id') == data['id']:
+                    jobs[i] = data
+                    break
+            else:
+                return jsonify({'error': 'Job not found'}), 404
+
+            updated_content = f"export const jobs = {json.dumps(jobs, indent=2)};"
+            with open(jobs_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Job updated successfully'})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'DELETE':
+        job_id = request.args.get('id', type=int)
+        if job_id is None:
+            return jsonify({'error': 'Job ID required'}), 400
+
+        try:
+            with open(jobs_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                jobs = json.loads(content[start:end])
+
+            jobs = [j for j in jobs if j.get('id') != job_id]
+
+            updated_content = f"export const jobs = {json.dumps(jobs, indent=2)};"
+            with open(jobs_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Job deleted successfully'})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/admin/opportunities', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def admin_opportunities():
+    if not check_admin_auth():
+        return jsonify({'error': 'Unauthorized'}), 401
+
+    opp_file = os.path.join(DATA_DIR, 'opportunities.js')
+
+    if request.method == 'GET':
+        try:
+            with open(opp_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                opportunities = json.loads(content[start:end])
+                return jsonify(opportunities)
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'POST':
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+
+        try:
+            with open(opp_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                opportunities = json.loads(content[start:end])
+
+            data['id'] = max([o.get('id', 0) for o in opportunities] + [0]) + 1
+            opportunities.append(data)
+
+            updated_content = f"export const opportunities = {json.dumps(opportunities, indent=2)};"
+            with open(opp_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Opportunity added successfully', 'id': data['id']})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'PUT':
+        data = request.get_json()
+        if not data or 'id' not in data:
+            return jsonify({'error': 'Opportunity ID required'}), 400
+
+        try:
+            with open(opp_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                opportunities = json.loads(content[start:end])
+
+            for i, opp in enumerate(opportunities):
+                if opp.get('id') == data['id']:
+                    opportunities[i] = data
+                    break
+            else:
+                return jsonify({'error': 'Opportunity not found'}), 404
+
+            updated_content = f"export const opportunities = {json.dumps(opportunities, indent=2)};"
+            with open(opp_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Opportunity updated successfully'})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+    elif request.method == 'DELETE':
+        opp_id = request.args.get('id', type=int)
+        if opp_id is None:
+            return jsonify({'error': 'Opportunity ID required'}), 400
+
+        try:
+            with open(opp_file, 'r') as f:
+                content = f.read()
+                start = content.find('[')
+                end = content.rfind(']') + 1
+                opportunities = json.loads(content[start:end])
+
+            opportunities = [o for o in opportunities if o.get('id') != opp_id]
+
+            updated_content = f"export const opportunities = {json.dumps(opportunities, indent=2)};"
+            with open(opp_file, 'w') as f:
+                f.write(updated_content)
+
+            return jsonify({'message': 'Opportunity deleted successfully'})
+
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+
+@app.route('/feedback', methods=['GET', 'POST'])
+def feedback():
+    if request.method == 'GET':
+        career = request.args.get('career')
+        if career:
+            feedback_data = load_feedback()
+            career_feedback = feedback_data.get(career, [])
+            return jsonify(career_feedback)
+        else:
+            return jsonify(load_feedback())
+
+    elif request.method == 'POST':
+        data = request.get_json()
+        if not data or 'career' not in data or 'rating' not in data:
+            return jsonify({'error': 'Career and rating required'}), 400
+
+        feedback_data = load_feedback()
+        if data['career'] not in feedback_data:
+            feedback_data[data['career']] = []
+
+        feedback_entry = {
+            'rating': data['rating'],
+            'comment': data.get('comment', ''),
+            'timestamp': datetime.now().isoformat(),
+            'user_id': data.get('user_id', 'anonymous')
+        }
+
+        feedback_data[data['career']].append(feedback_entry)
+        save_feedback(feedback_data)
+
+        return jsonify({'message': 'Feedback submitted successfully'})
+
+@app.route('/feedback/aggregate', methods=['GET'])
+def feedback_aggregate():
+    feedback_data = load_feedback()
+    aggregates = {}
+
+    for career, feedbacks in feedback_data.items():
+        if feedbacks:
+            ratings = [f['rating'] for f in feedbacks]
+            aggregates[career] = {
+                'average_rating': sum(ratings) / len(ratings),
+                'total_reviews': len(ratings),
+                'rating_distribution': {
+                    1: ratings.count(1),
+                    2: ratings.count(2),
+                    3: ratings.count(3),
+                    4: ratings.count(4),
+                    5: ratings.count(5)
+                }
+            }
+        else:
+            aggregates[career] = {
+                'average_rating': 0,
+                'total_reviews': 0,
+                'rating_distribution': {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+            }
+
+    return jsonify(aggregates)
 
 
 if __name__ == '__main__':

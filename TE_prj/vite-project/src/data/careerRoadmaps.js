@@ -11,6 +11,15 @@ export const careerRoadmaps = {
       "Ph.D. in Computer Science (3-5 years - For Research)",
       "Online certifications in specialized domains"
     ],
+    internationalEducation: [
+      "US: Bachelor's in Computer Science (4 years) at universities like MIT, Stanford, UC Berkeley",
+      "UK: BSc Computer Science (3-4 years) at universities like Oxford, Cambridge, Imperial College",
+      "Canada: Computer Science degree (4 years) at University of Toronto, UBC",
+      "Australia: Bachelor of IT/Computer Science (3 years) at University of Melbourne, Sydney",
+      "Germany: Computer Science degree (3-4 years) at TU Munich, RWTH Aachen",
+      "Singapore: Computer Science at NUS, NTU (4 years)",
+      "Global Certifications: AWS, Azure, Google Cloud, CISSP, CISM"
+    ],
     skills: [
       "Python, Java, C++, JavaScript",
       "Data Structures & Algorithms",
@@ -25,32 +34,52 @@ export const careerRoadmaps = {
       {
         title: "Software Engineer",
         description: "Develop applications and software solutions",
-        salary: "₹6-25 LPA"
+        salary: "₹6-25 LPA | $70K-120K USD"
       },
       {
         title: "Data Scientist",
         description: "Analyze data and build ML models",
-        salary: "₹8-30 LPA"
+        salary: "₹8-30 LPA | $90K-140K USD"
       },
       {
         title: "Full Stack Developer",
         description: "Build complete web applications",
-        salary: "₹7-28 LPA"
+        salary: "₹7-28 LPA | $80K-130K USD"
       },
       {
         title: "AI/ML Engineer",
         description: "Create intelligent systems",
-        salary: "₹10-35 LPA"
+        salary: "₹10-35 LPA | $100K-160K USD"
       },
       {
         title: "Cloud Architect",
         description: "Design cloud infrastructure",
-        salary: "₹12-40 LPA"
+        salary: "₹12-40 LPA | $130K-180K USD"
       },
       {
         title: "Cybersecurity Expert",
         description: "Protect systems from threats",
-        salary: "₹9-32 LPA"
+        salary: "₹9-32 LPA | $95K-150K USD"
+      }
+    ],
+    internationalCareers: [
+      {
+        title: "Software Engineer at FAANG",
+        description: "Work at Google, Amazon, Facebook, Apple, Netflix",
+        location: "US/Silicon Valley",
+        salary: "$120K-250K USD + stock options"
+      },
+      {
+        title: "Data Scientist at Tech Giants",
+        description: "AI/ML roles at Microsoft, Google, Tesla",
+        location: "US/UK",
+        salary: "$130K-200K USD"
+      },
+      {
+        title: "DevOps Engineer",
+        description: "Cloud infrastructure at AWS, Azure",
+        location: "Global",
+        salary: "$110K-170K USD"
       }
     ],
     courses: [
@@ -80,9 +109,10 @@ export const careerRoadmaps = {
       }
     ],
     insights: {
-      growth: "Computer Science & IT is one of the fastest-growing fields with 22% projected growth. High demand for AI/ML engineers, cloud architects, and full-stack developers.",
-      salary: "Entry-level: ₹6-10 LPA | Mid-level: ₹15-25 LPA | Senior: ₹30-50+ LPA",
-      trends: "AI/ML, Cloud Computing, Blockchain, IoT, Cybersecurity, and Quantum Computing are emerging trends with massive opportunities."
+      growth: "Computer Science & IT is one of the fastest-growing fields with 22% projected growth globally. High demand for AI/ML engineers, cloud architects, and full-stack developers.",
+      salary: "Entry-level: ₹6-10 LPA | Mid-level: ₹15-25 LPA | Senior: ₹30-50+ LPA | Global: $70K-200K USD",
+      trends: "AI/ML, Cloud Computing, Blockchain, IoT, Cybersecurity, and Quantum Computing are emerging trends with massive opportunities.",
+      globalTrends: "Remote work opportunities, H1B visas for US, Digital nomad visas, High demand in Singapore, Dubai, London"
     }
   },
   "Mechanical Engineering": {
